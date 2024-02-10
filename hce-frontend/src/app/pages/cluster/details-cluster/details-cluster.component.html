@@ -1,0 +1,145 @@
+<nb-card>
+  <nb-card-header>Cluster details</nb-card-header>
+  <nb-card-body>
+    <div class="row">
+      <div class="col-sm-6">
+        <!--Name english -->
+        <div class="form-group">
+          <label for="clusterNameEn" class="label">Name english</label>
+          <input
+            readonly
+            type="text"
+            [(ngModel)]="cluster.clusterNameEn"
+            nbInput
+            shape="round"
+            fullWidth
+            id="clusterNameEn"
+          />
+        </div>
+      </div>
+
+      <div class="col-sm-6">
+        <!--Name arabic -->
+        <div class="form-group">
+          <label for="clusterNameAr" class="label">Name arabic</label>
+          <input
+            readonly
+            type="text"
+            [(ngModel)]="cluster.clusterNameAr"
+            nbInput
+            shape="round"
+            fullWidth
+            id="clusterNameAr"
+          />
+        </div>
+      </div>
+
+      <div class="col-sm-6">
+        <!--Region name language -->
+        <div class="form-group">
+          <label for="clusterNameLang" class="label">Name language</label>
+          <input
+            readonly
+            type="text"
+            [(ngModel)]="cluster.clusterNameLang"
+            nbInput
+            shape="round"
+            fullWidth
+            id="clusterNameLang"
+          />
+        </div>
+      </div>
+
+      <div class="col-sm-6">
+        <!--Description -->
+        <div class="form-group">
+          <label for="clusterDesc" class="label">Description</label>
+          <input
+            readonly
+            type="text"
+            [(ngModel)]="cluster.clusterDesc"
+            nbInput
+            shape="round"
+            fullWidth
+            id="clusterDesc"
+          />
+        </div>
+      </div>
+
+      <div class="col-sm-6">
+        <!--country name en -->
+        <div class="form-group">
+          <label for="districtNameEn" class="label">District name english</label>
+          <input
+            readonly
+            type="text"
+            [(ngModel)]="cluster.districtNameEn"
+            nbInput
+            shape="round"
+            fullWidth
+            id="districtNameEn"
+          />
+        </div>
+      </div>
+
+      <div class="col-sm-6">
+        <!--country name ar -->
+        <div class="form-group">
+          <label for="districtNameAr" class="label">District name arabic</label>
+          <input
+            readonly
+            type="text"
+            [(ngModel)]="cluster.districtNameAr"
+            nbInput
+            shape="round"
+            fullWidth
+            id="districtNameAr"
+          />
+        </div>
+      </div>
+
+      <div class="col-sm-6">
+        <!--country name ar -->
+        <div class="form-group">
+          <label for="districtNameLang" class="label">District name language</label>
+          <input
+            readonly
+            type="text"
+            [(ngModel)]="cluster.districtNameLang"
+            nbInput
+            shape="round"
+            fullWidth
+            id="districtNameLang"
+          />
+        </div>
+      </div>
+
+      <div class="col-sm-6">
+        <!--Creation date -->
+        <div class="form-group">
+          <label for="creationDate" class="label">Creation Date</label>
+          <input
+            readonly
+            type="text"
+            [ngModel]="cluster.creationDate | date: 'dd/MM/yyyy'"
+            nbInput
+            shape="round"
+            fullWidth
+            id="creationDate"
+          />
+        </div>
+      </div>
+    </div>
+    <div class="row mt-2">
+      <button
+        nbButton
+        class="floatingBtn m-2"
+        type="button"
+        [routerLink]="['/pages/cluster/']"
+        status="success"
+      >
+        Back to list
+      </button>
+    </div>
+  </nb-card-body>
+</nb-card>

@@ -1,0 +1,145 @@
+<nb-card>
+  <nb-card-header>District details</nb-card-header>
+  <nb-card-body>
+    <div class="row">
+      <div class="col-sm-6">
+        <!--Name english -->
+        <div class="form-group">
+          <label for="districtNameEn" class="label">Name english</label>
+          <input
+            readonly
+            type="text"
+            [(ngModel)]="district.districtNameEn"
+            nbInput
+            shape="round"
+            fullWidth
+            id="districtNameEn"
+          />
+        </div>
+      </div>
+
+      <div class="col-sm-6">
+        <!--Name arabic -->
+        <div class="form-group">
+          <label for="districtNameAr" class="label">Name arabic</label>
+          <input
+            readonly
+            type="text"
+            [(ngModel)]="district.districtNameAr"
+            nbInput
+            shape="round"
+            fullWidth
+            id="districtNameAr"
+          />
+        </div>
+      </div>
+
+      <div class="col-sm-6">
+        <!--Region name language -->
+        <div class="form-group">
+          <label for="districtNameLang" class="label">Name language</label>
+          <input
+            readonly
+            type="text"
+            [(ngModel)]="district.districtNameLang"
+            nbInput
+            shape="round"
+            fullWidth
+            id="districtNameLang"
+          />
+        </div>
+      </div>
+
+      <div class="col-sm-6">
+        <!--Description -->
+        <div class="form-group">
+          <label for="districtDesc" class="label">Description</label>
+          <input
+            readonly
+            type="text"
+            [(ngModel)]="district.districtDesc"
+            nbInput
+            shape="round"
+            fullWidth
+            id="districtDesc"
+          />
+        </div>
+      </div>
+
+      <div class="col-sm-6">
+        <!--country name en -->
+        <div class="form-group">
+          <label for="cityNameEn" class="label">City name english</label>
+          <input
+            readonly
+            type="text"
+            [(ngModel)]="district.cityNameEn"
+            nbInput
+            shape="round"
+            fullWidth
+            id="cityNameEn"
+          />
+        </div>
+      </div>
+
+      <div class="col-sm-6">
+        <!--country name ar -->
+        <div class="form-group">
+          <label for="cityNameAr" class="label">City name arabic</label>
+          <input
+            readonly
+            type="text"
+            [(ngModel)]="district.cityNameAr"
+            nbInput
+            shape="round"
+            fullWidth
+            id="cityNameAr"
+          />
+        </div>
+      </div>
+
+      <div class="col-sm-6">
+        <!--country name ar -->
+        <div class="form-group">
+          <label for="cityNameLang" class="label">City name language</label>
+          <input
+            readonly
+            type="text"
+            [(ngModel)]="district.cityNameLang"
+            nbInput
+            shape="round"
+            fullWidth
+            id="cityNameLang"
+          />
+        </div>
+      </div>
+
+      <div class="col-sm-6">
+        <!--Creation date -->
+        <div class="form-group">
+          <label for="creationDate" class="label">Creation Date</label>
+          <input
+            readonly
+            type="text"
+            [ngModel]="district.creationDate | date: 'dd/MM/yyyy'"
+            nbInput
+            shape="round"
+            fullWidth
+            id="creationDate"
+          />
+        </div>
+      </div>
+    </div>
+    <div class="row mt-2">
+      <button
+        nbButton
+        class="floatingBtn m-2"
+        type="button"
+        [routerLink]="['/pages/district/']"
+        status="success"
+      >
+        Back to list
+      </button>
+    </div>
+  </nb-card-body>
+</nb-card>

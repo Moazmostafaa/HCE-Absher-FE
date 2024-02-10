@@ -1,0 +1,33 @@
+<nb-card>
+  <nb-card-header>Core Type details</nb-card-header>
+  <nb-card-body>
+      <div class="row">
+          <div class="col-sm-6">
+              <!--Weight name -->
+              <div class="form-group">
+                  <label for="npskpiWeightName" class="label">Weight name</label>
+                  <input readonly type="text" [(ngModel)]="coreType.npskpiWeightName" nbInput shape="round" fullWidth id="npskpiWeightName">
+              </div>
+          </div>
+
+          <div class="col-sm-6">
+              <!--Weight description -->
+              <div class="form-group">
+                  <label for="npskpiWeightDesc" class="label">Weight description</label>
+                  <input readonly type="text" [(ngModel)]="coreType.npskpiWeightDesc" nbInput shape="round" fullWidth id="npskpiWeightDesc">
+              </div>
+          </div>
+          <div class="col-sm-6">
+              <!--Creation date -->
+              <div class="form-group">
+                  <label for="creationDate" class="label">Creation Date</label>
+                  <input readonly type="text" [ngModel]='coreType.creationDate | date: "dd/MM/yyyy"' nbInput shape="round" fullWidth id="creationDate">
+              </div>
+          </div>
+      </div>
+      <div class="row mt-2">
+          <button nbButton class="floatingBtn m-2" type="button" [routerLink]="['/pages/core-type/']"
+              status="success">Back to list</button>
+      </div>
+  </nb-card-body>
+</nb-card>

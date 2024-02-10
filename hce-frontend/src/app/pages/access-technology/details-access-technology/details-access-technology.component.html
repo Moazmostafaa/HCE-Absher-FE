@@ -1,0 +1,33 @@
+<nb-card>
+    <nb-card-header>Access technology details</nb-card-header>
+    <nb-card-body>
+        <div class="row">
+            <div class="col-sm-6">
+                <!--Service name -->
+                <div class="form-group">
+                    <label for="serviceName" class="label">Service name</label>
+                    <input readonly type="text" [(ngModel)]="technology.serviceName" nbInput shape="round" fullWidth id="serviceName">
+                </div>
+            </div>
+
+            <div class="col-sm-6">
+                <!--Service description -->
+                <div class="form-group">
+                    <label for="serviceDesc" class="label">Service description</label>
+                    <input readonly type="text" [(ngModel)]="technology.serviceDesc" nbInput shape="round" fullWidth id="serviceDesc">
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <!--Creation date -->
+                <div class="form-group">
+                    <label for="creationDate" class="label">Service description</label>
+                    <input readonly type="text" [ngModel]='technology.creationDate | date: "dd/MM/yyyy"' nbInput shape="round" fullWidth id="serviceDesc">
+                </div>
+            </div>
+        </div>
+        <div class="row mt-2">
+            <button nbButton class="floatingBtn m-2" type="button" [routerLink]="['/pages/access-technology/']"
+                status="success">Back to list</button>
+        </div>
+    </nb-card-body>
+</nb-card>

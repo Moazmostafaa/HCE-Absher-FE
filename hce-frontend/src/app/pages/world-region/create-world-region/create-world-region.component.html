@@ -1,0 +1,60 @@
+<nb-card>
+  <nb-card-header>Create world region</nb-card-header>
+  <nb-card-body>
+      <form [formGroup]="form" (ngSubmit)="onSubmit()">
+          <div class="row">
+              <div class="col-sm-6">
+                  <!--name en-->
+                  <div class="form-group">
+                      <label for="nameEn" class="label">Name englsh</label>
+                      <input [status]="fc.nameEn.touched && fc.nameEn.errors? 'danger': 'basic'" type="text"
+                          formControlName="nameEn" nbInput shape="round" fullWidth id="nameEn">
+                      <mat-error *ngIf="fc.nameEn.touched && fc.nameEn.hasError('required')">
+                          Name english is required
+                      </mat-error>
+                  </div>
+              </div>
+
+              <div class="col-sm-6">
+                <!--name ar-->
+                <div class="form-group">
+                    <label for="nameAr" class="label">Name arabic</label>
+                    <input [status]="fc.nameAr.touched && fc.nameAr.errors? 'danger': 'basic'" type="text"
+                        formControlName="nameAr" nbInput shape="round" fullWidth id="nameAr">
+                    <mat-error *ngIf="fc.nameAr.touched && fc.nameAr.hasError('required')">
+                        Name arabic is required
+                    </mat-error>
+                </div>
+            </div>
+
+              <div class="col-sm-6">
+                  <!--Name lang -->
+                  <div class="form-group">
+                      <label for="nameLang" class="label">Name language</label>
+                      <input [status]="fc.nameLang.touched && fc.nameLang.errors? 'danger': 'basic'" type="text"
+                          formControlName="nameLang" nbInput shape="round" fullWidth id="nameLang">
+                      <mat-error *ngIf="fc.nameLang.touched && fc.nameLang.errors">
+                        name language is required
+                      </mat-error>
+                  </div>
+              </div>
+
+              <div class="col-sm-6">
+                <!--description -->
+                <div class="form-group">
+                    <label for="desc" class="label">Description</label>
+                    <input [status]="fc.desc.touched && fc.desc.errors? 'danger': 'basic'" type="text"
+                        formControlName="desc" nbInput shape="round" fullWidth id="desc">
+                    <mat-error *ngIf="fc.desc.touched && fc.desc.errors">
+                      description is required
+                    </mat-error>
+                </div>
+            </div>
+          </div>
+          <div class="row mt-2">
+              <button class="floatingBtn m-2" [disabled]="form.invalid" type="submit" status="primary"
+                  nbButton>Save</button>
+          </div>
+      </form>
+  </nb-card-body>
+</nb-card>

@@ -1,0 +1,145 @@
+<nb-card>
+  <nb-card-header>City details</nb-card-header>
+  <nb-card-body>
+    <div class="row">
+      <div class="col-sm-6">
+        <!--Name english -->
+        <div class="form-group">
+          <label for="cityNameEn" class="label">Name english</label>
+          <input
+            readonly
+            type="text"
+            [(ngModel)]="city.cityNameEn"
+            nbInput
+            shape="round"
+            fullWidth
+            id="cityNameEn"
+          />
+        </div>
+      </div>
+
+      <div class="col-sm-6">
+        <!--Name arabic -->
+        <div class="form-group">
+          <label for="cityNameAr" class="label">Name arabic</label>
+          <input
+            readonly
+            type="text"
+            [(ngModel)]="city.cityNameAr"
+            nbInput
+            shape="round"
+            fullWidth
+            id="cityNameAr"
+          />
+        </div>
+      </div>
+
+      <div class="col-sm-6">
+        <!--Region name language -->
+        <div class="form-group">
+          <label for="cityNameLang" class="label">Name language</label>
+          <input
+            readonly
+            type="text"
+            [(ngModel)]="city.cityNameLang"
+            nbInput
+            shape="round"
+            fullWidth
+            id="cityNameLang"
+          />
+        </div>
+      </div>
+
+      <div class="col-sm-6">
+        <!--Description -->
+        <div class="form-group">
+          <label for="cityDesc" class="label">Description</label>
+          <input
+            readonly
+            type="text"
+            [(ngModel)]="city.cityDesc"
+            nbInput
+            shape="round"
+            fullWidth
+            id="cityDesc"
+          />
+        </div>
+      </div>
+
+      <div class="col-sm-6">
+        <!--country name en -->
+        <div class="form-group">
+          <label for="stateRegionNameEn" class="label">State region name english</label>
+          <input
+            readonly
+            type="text"
+            [(ngModel)]="city.stateRegionNameEn"
+            nbInput
+            shape="round"
+            fullWidth
+            id="stateRegionNameEn"
+          />
+        </div>
+      </div>
+
+      <div class="col-sm-6">
+        <!--country name ar -->
+        <div class="form-group">
+          <label for="stateRegionNameAr" class="label">State region name arabic</label>
+          <input
+            readonly
+            type="text"
+            [(ngModel)]="city.stateRegionNameAr"
+            nbInput
+            shape="round"
+            fullWidth
+            id="stateRegionNameAr"
+          />
+        </div>
+      </div>
+
+      <div class="col-sm-6">
+        <!--country name ar -->
+        <div class="form-group">
+          <label for="stateRegionNameLang" class="label">State region name language</label>
+          <input
+            readonly
+            type="text"
+            [(ngModel)]="city.stateRegionNameLang"
+            nbInput
+            shape="round"
+            fullWidth
+            id="stateRegionNameLang"
+          />
+        </div>
+      </div>
+
+      <div class="col-sm-6">
+        <!--Creation date -->
+        <div class="form-group">
+          <label for="creationDate" class="label">Creation Date</label>
+          <input
+            readonly
+            type="text"
+            [ngModel]="city.creationDate | date: 'dd/MM/yyyy'"
+            nbInput
+            shape="round"
+            fullWidth
+            id="creationDate"
+          />
+        </div>
+      </div>
+    </div>
+    <div class="row mt-2">
+      <button
+        nbButton
+        class="floatingBtn m-2"
+        type="button"
+        [routerLink]="['/pages/city/']"
+        status="success"
+      >
+        Back to list
+      </button>
+    </div>
+  </nb-card-body>
+</nb-card>

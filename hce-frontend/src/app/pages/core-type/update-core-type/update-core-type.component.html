@@ -1,0 +1,74 @@
+<nb-card>
+  <nb-card-header>Update core type</nb-card-header>
+  <nb-card-body>
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <div class="row">
+        <div class="col-sm-6">
+          <!--Weight name -->
+          <div class="form-group">
+            <label for="npskpiWeightName" class="label">Weight name</label>
+            <input
+              [status]="
+                fc.npskpiWeightName.touched && fc.npskpiWeightName.errors
+                  ? 'danger'
+                  : 'basic'
+              "
+              type="text"
+              formControlName="npskpiWeightName"
+              nbInput
+              shape="round"
+              fullWidth
+              id="npskpiWeightName"
+            />
+            <mat-error
+              *ngIf="
+                fc.npskpiWeightName.touched &&
+                fc.npskpiWeightName.hasError('required')
+              "
+            >
+              Weight name is required
+            </mat-error>
+          </div>
+        </div>
+
+        <div class="col-sm-6">
+          <!--Weight description -->
+          <div class="form-group">
+            <label for="npskpiWeightDesc" class="label"
+              >Weight description</label
+            >
+            <input
+              [status]="
+                fc.npskpiWeightDesc.touched && fc.npskpiWeightDesc.errors
+                  ? 'danger'
+                  : 'basic'
+              "
+              type="text"
+              formControlName="npskpiWeightDesc"
+              nbInput
+              shape="round"
+              fullWidth
+              id="npskpiWeightDesc"
+            />
+            <mat-error
+              *ngIf="fc.npskpiWeightDesc.touched && fc.npskpiWeightDesc.errors"
+            >
+              Weight description is required
+            </mat-error>
+          </div>
+        </div>
+      </div>
+      <div class="row mt-2">
+        <button
+          class="floatingBtn m-2"
+          [disabled]="form.invalid"
+          type="submit"
+          status="primary"
+          nbButton
+        >
+          Save
+        </button>
+      </div>
+    </form>
+  </nb-card-body>
+</nb-card>

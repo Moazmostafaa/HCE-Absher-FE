@@ -1,0 +1,34 @@
+<nb-card>
+    <nb-card-header>Vendor details</nb-card-header>
+    <nb-card-body>
+        <div class="row">
+            <div class="col-sm-6">
+                <!--Vendor name -->
+                <div class="form-group">
+                    <label for="vendorName" class="label">Vendor name</label>
+                    <input readonly type="text" [(ngModel)]="vendor.vendorName" nbInput shape="round" fullWidth id="serviceName">
+                </div>
+            </div>
+
+            <div class="col-sm-6">
+                <!--Vendor description -->
+                <div class="form-group">
+                    <label for="vendorDesc" class="label">Vendor description</label>
+                    <input readonly type="text" [(ngModel)]="vendor.vendorDesc" nbInput shape="round" fullWidth id="serviceDesc">
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <!--Creation date -->
+                <div class="form-group">
+                    <label for="creationDate" class="label">Creation Date</label>
+                    <input readonly type="text" [ngModel]='vendor.creationDate | date: "dd/MM/yyyy"' nbInput shape="round" fullWidth id="serviceDesc">
+                </div>
+            </div>
+        </div>
+        <div class="row mt-2">
+            <button nbButton class="floatingBtn m-2" type="button" [routerLink]="['/pages/vendor/']"
+                status="success">Back to list</button>
+        </div>
+    </nb-card-body>
+</nb-card>
+

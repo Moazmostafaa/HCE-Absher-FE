@@ -1,0 +1,145 @@
+<nb-card>
+  <nb-card-header>State region details</nb-card-header>
+  <nb-card-body>
+    <div class="row">
+      <div class="col-sm-6">
+        <!--Name english -->
+        <div class="form-group">
+          <label for="regionNameEn" class="label">Name english</label>
+          <input
+            readonly
+            type="text"
+            [(ngModel)]="stateRegion.regionNameEn"
+            nbInput
+            shape="round"
+            fullWidth
+            id="regionNameEn"
+          />
+        </div>
+      </div>
+
+      <div class="col-sm-6">
+        <!--Name arabic -->
+        <div class="form-group">
+          <label for="regionNameAr" class="label">Name arabic</label>
+          <input
+            readonly
+            type="text"
+            [(ngModel)]="stateRegion.regionNameAr"
+            nbInput
+            shape="round"
+            fullWidth
+            id="regionNameAr"
+          />
+        </div>
+      </div>
+
+      <div class="col-sm-6">
+        <!--Region name language -->
+        <div class="form-group">
+          <label for="regionNameLang" class="label">Name language</label>
+          <input
+            readonly
+            type="text"
+            [(ngModel)]="stateRegion.regionNameLang"
+            nbInput
+            shape="round"
+            fullWidth
+            id="regionNameLang"
+          />
+        </div>
+      </div>
+
+      <div class="col-sm-6">
+        <!--Description -->
+        <div class="form-group">
+          <label for="regionDesc" class="label">Description</label>
+          <input
+            readonly
+            type="text"
+            [(ngModel)]="stateRegion.regionDesc"
+            nbInput
+            shape="round"
+            fullWidth
+            id="regionDesc"
+          />
+        </div>
+      </div>
+
+      <div class="col-sm-6">
+        <!--country name en -->
+        <div class="form-group">
+          <label for="countryNameEn" class="label">Country name english</label>
+          <input
+            readonly
+            type="text"
+            [(ngModel)]="stateRegion.countryNameEn"
+            nbInput
+            shape="round"
+            fullWidth
+            id="countryNameEn"
+          />
+        </div>
+      </div>
+
+      <div class="col-sm-6">
+        <!--country name ar -->
+        <div class="form-group">
+          <label for="countryNameAr" class="label">Country name arabic</label>
+          <input
+            readonly
+            type="text"
+            [(ngModel)]="stateRegion.countryNameAr"
+            nbInput
+            shape="round"
+            fullWidth
+            id="countryNameAr"
+          />
+        </div>
+      </div>
+
+      <div class="col-sm-6">
+        <!--country name language -->
+        <div class="form-group">
+          <label for="countryNameLang" class="label">Country name language</label>
+          <input
+            readonly
+            type="text"
+            [(ngModel)]="stateRegion.countryNameLang"
+            nbInput
+            shape="round"
+            fullWidth
+            id="countryNameLang"
+          />
+        </div>
+      </div>
+
+      <div class="col-sm-6">
+        <!--Creation date -->
+        <div class="form-group">
+          <label for="creationDate" class="label">Creation Date</label>
+          <input
+            readonly
+            type="text"
+            [ngModel]="stateRegion.creationDate | date: 'dd/MM/yyyy'"
+            nbInput
+            shape="round"
+            fullWidth
+            id="creationDate"
+          />
+        </div>
+      </div>
+    </div>
+    <div class="row mt-2">
+      <button
+        nbButton
+        class="floatingBtn m-2"
+        type="button"
+        [routerLink]="['/pages/state-region/']"
+        status="success"
+      >
+        Back to list
+      </button>
+    </div>
+  </nb-card-body>
+</nb-card>

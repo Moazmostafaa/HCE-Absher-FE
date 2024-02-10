@@ -1,0 +1,33 @@
+<nb-card>
+    <nb-card-header>Goal details</nb-card-header>
+    <nb-card-body>
+        <div class="row">
+            <div class="col-sm-6">
+                <!--Goal name -->
+                <div class="form-group">
+                    <label for="goalName" class="label">Goal name</label>
+                    <input readonly type="text" [(ngModel)]="goal.goalName" nbInput shape="round" fullWidth id="serviceName">
+                </div>
+            </div>
+
+            <div class="col-sm-6">
+                <!--Goal description -->
+                <div class="form-group">
+                    <label for="goalDesc" class="label">Goal description</label>
+                    <input readonly type="text" [(ngModel)]="goal.goalDesc" nbInput shape="round" fullWidth id="serviceDesc">
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <!--Creation date -->
+                <div class="form-group">
+                    <label for="creationDate" class="label">Creation Date</label>
+                    <input readonly type="text" [ngModel]='goal.creationDate | date: "dd/MM/yyyy"' nbInput shape="round" fullWidth id="serviceDesc">
+                </div>
+            </div>
+        </div>
+        <div class="row mt-2">
+            <button nbButton class="floatingBtn m-2" type="button" [routerLink]="['/pages/goal/']"
+                status="success">Back to list</button>
+        </div>
+    </nb-card-body>
+</nb-card>

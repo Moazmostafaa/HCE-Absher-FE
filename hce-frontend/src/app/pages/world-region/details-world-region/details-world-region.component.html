@@ -1,0 +1,50 @@
+<nb-card>
+  <nb-card-header>World region details</nb-card-header>
+  <nb-card-body>
+      <div class="row">
+          <div class="col-sm-6">
+              <!--Name english -->
+              <div class="form-group">
+                  <label for="regionNameEn" class="label">Name english</label>
+                  <input readonly type="text" [(ngModel)]="worldRegion.regionNameEn" nbInput shape="round" fullWidth id="regionNameEn">
+              </div>
+          </div>
+
+          <div class="col-sm-6">
+              <!--Name arabic -->
+              <div class="form-group">
+                  <label for="regionNameAr" class="label">Name arabic</label>
+                  <input readonly type="text" [(ngModel)]="worldRegion.regionNameAr" nbInput shape="round" fullWidth id="regionNameAr">
+              </div>
+          </div>
+
+          <div class="col-sm-6">
+            <!--Region name language -->
+            <div class="form-group">
+                <label for="regionNameLang" class="label">Region name language</label>
+                <input readonly type="text" [(ngModel)]="worldRegion.regionNameLang" nbInput shape="round" fullWidth id="regionNameLang">
+            </div>
+        </div>
+
+        <div class="col-sm-6">
+          <!--Description -->
+          <div class="form-group">
+              <label for="regionDesc" class="label">Description</label>
+              <input readonly type="text" [(ngModel)]="worldRegion.regionDesc" nbInput shape="round" fullWidth id="regionDesc">
+          </div>
+      </div>
+
+          <div class="col-sm-6">
+              <!--Creation date -->
+              <div class="form-group">
+                  <label for="creationDate" class="label">Creation Date</label>
+                  <input readonly type="text" [ngModel]='worldRegion.creationDate | date: "dd/MM/yyyy"' nbInput shape="round" fullWidth id="creationDate">
+              </div>
+          </div>
+      </div>
+      <div class="row mt-2">
+          <button nbButton class="floatingBtn m-2" type="button" [routerLink]="['/pages/world-region/']"
+              status="success">Back to list</button>
+      </div>
+  </nb-card-body>
+</nb-card>

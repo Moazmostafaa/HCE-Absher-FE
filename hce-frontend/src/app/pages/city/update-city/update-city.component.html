@@ -1,0 +1,176 @@
+<nb-card [nbSpinner]="loading" nbSpinnerStatus="primary">
+  <nb-card-header>Update City</nb-card-header>
+  <nb-card-body>
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <div class="row">
+        <div class="col-sm-6">
+          <!--name en-->
+          <div class="form-group">
+            <label for="nameEn" class="label">Name english</label>
+            <input
+              [status]="
+                fc.nameEn.touched && fc.nameEn.errors ? 'danger' : 'basic'
+              "
+              type="text"
+              formControlName="nameEn"
+              nbInput
+              shape="round"
+              fullWidth
+              id="nameEn"
+            />
+            <mat-error
+              *ngIf="fc.nameEn.touched && fc.nameEn.hasError('required')"
+            >
+              Name english is required
+            </mat-error>
+          </div>
+        </div>
+
+        <div class="col-sm-6">
+          <!--name ar-->
+          <div class="form-group">
+            <label for="nameAr" class="label">Name arabic</label>
+            <input
+              [status]="
+                fc.nameAr.touched && fc.nameAr.errors ? 'danger' : 'basic'
+              "
+              type="text"
+              formControlName="nameAr"
+              nbInput
+              shape="round"
+              fullWidth
+              id="nameAr"
+            />
+            <mat-error
+              *ngIf="fc.nameAr.touched && fc.nameAr.hasError('required')"
+            >
+              Name arabic is required
+            </mat-error>
+          </div>
+        </div>
+
+        <div class="col-sm-6">
+          <!--Name lang -->
+          <div class="form-group">
+            <label for="nameLang" class="label">Name language</label>
+            <input
+              [status]="
+                fc.nameLang.touched && fc.nameLang.errors ? 'danger' : 'basic'
+              "
+              type="text"
+              formControlName="nameLang"
+              nbInput
+              shape="round"
+              fullWidth
+              id="nameLang"
+            />
+            <mat-error *ngIf="fc.nameLang.touched && fc.nameLang.errors">
+              name language is required
+            </mat-error>
+          </div>
+        </div>
+
+        <div class="col-sm-6">
+          <!--Description -->
+          <div class="form-group">
+            <label for="desc" class="label">Description</label>
+            <input
+              [status]="
+                fc.desc.touched && fc.desc.errors ? 'danger' : 'basic'
+              "
+              type="text"
+              formControlName="desc"
+              nbInput
+              shape="round"
+              fullWidth
+              id="desc"
+            />
+            <mat-error *ngIf="fc.desc.touched && fc.desc.errors">
+              Description is required
+            </mat-error>
+          </div>
+        </div>
+
+        <div class="col-sm-6">
+          <!--world region list -->
+          <label for="worldRegionId" class="label">World Region</label>
+          <nb-select
+            id="worldRegionId"
+            formControlName="worldRegionId"
+            shape="round"
+            fullWidth
+            (selectedChange)="onChangeWorldRegion($event)"
+          >
+            <nb-option value="">No data selected</nb-option>
+            <nb-option
+              *ngFor="let region of worldRegions"
+              [value]="region.regionId"
+            >
+              {{ region.regionNameEn }}</nb-option
+            >
+          </nb-select>
+          <mat-error *ngIf="fc.worldRegionId.touched && fc.worldRegionId.errors">
+            World region is required
+          </mat-error>
+        </div>
+
+        <div class="col-sm-6">
+          <!--countries list -->
+          <label for="countryId" class="label">Country</label>
+          <nb-select
+            id="countryId"
+            formControlName="countryId"
+            shape="round"
+            fullWidth
+            (selectedChange)="onChangeCounty($event)"
+          >
+            <nb-option value="">No data selected</nb-option>
+            <nb-option
+              *ngFor="let country of countries"
+              [value]="country.countryId"
+            >
+              {{ country.countryNameEn }}</nb-option
+            >
+          </nb-select>
+          <mat-error *ngIf="fc.countryId.touched && fc.countryId.errors">
+            Country is required
+          </mat-error>
+        </div>
+
+        <div class="col-sm-6">
+          <!--state regions list -->
+          <label for="stateRegionId" class="label">State Region</label>
+          <nb-select
+            [status]="fc.stateRegionId.touched && fc.stateRegionId.errors ? 'danger' : 'basic'"
+            formControlName="stateRegionId"
+            id="stateRegionId"
+            shape="round"
+            fullWidth
+          >
+            <nb-option value="">No data selected</nb-option>
+            <nb-option
+              *ngFor="let stateRegion of stateRegions"
+              [value]="stateRegion.regionId"
+            >
+              {{ stateRegion.regionNameEn }}</nb-option
+            >
+          </nb-select>
+          <mat-error *ngIf="fc.stateRegionId.touched && fc.stateRegionId.errors">
+            State region is Required
+          </mat-error>
+        </div>
+      </div>
+      <div class="row mt-2">
+        <button
+          class="floatingBtn m-2"
+          [disabled]="form.invalid"
+          type="submit"
+          status="primary"
+          nbButton
+        >
+          Save
+        </button>
+      </div>
+    </form>
+  </nb-card-body>
+</nb-card>

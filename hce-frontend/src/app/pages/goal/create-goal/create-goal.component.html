@@ -1,0 +1,36 @@
+<nb-card>
+    <nb-card-header>Create Goal</nb-card-header>
+    <nb-card-body>
+        <form [formGroup]="createForm" (ngSubmit)="onSubmit()">
+            <div class="row">
+                <div class="col-sm-6">
+                    <!--Goal name -->
+                    <div class="form-group">
+                        <label for="goalName" class="label">Goal name</label>
+                        <input [status]="fc.goalName.touched && fc.goalName.errors? 'danger': 'basic'" type="text"
+                            formControlName="goalName" nbInput shape="round" fullWidth id="goalName">
+                        <mat-error *ngIf="fc.goalName.touched && fc.goalName.hasError('required')">
+                            Goal name is required
+                        </mat-error>
+                    </div>
+                </div>
+
+                <div class="col-sm-6">
+                    <!--Goal description -->
+                    <div class="form-group">
+                        <label for="goalDesc" class="label">Goal description</label>
+                        <input [status]="fc.goalDesc.touched && fc.goalDesc.errors? 'danger': 'basic'" type="text"
+                            formControlName="goalDesc" nbInput shape="round" fullWidth id="goalDesc">
+                        <mat-error *ngIf="fc.goalDesc.touched && fc.goalDesc.errors">
+                            Goal description is required
+                        </mat-error>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-2">
+                <button class="floatingBtn m-2" [disabled]="createForm.invalid" type="submit" status="primary"
+                    nbButton>Save</button>
+            </div>
+        </form>
+    </nb-card-body>
+</nb-card>

@@ -1,0 +1,13 @@
+<nb-card>
+  <nb-card-header>{{ title }}  
+  <button mat-button class="close-icon" (click)="dismiss()">
+    <mat-icon>close</mat-icon>
+  </button> 
+</nb-card-header>
+  <nb-card-body>
+   {{body}}
+  </nb-card-body>
+  <nb-card-footer>
+    <button style="float: right;" nbButton  status="{{!buttonText || buttonText=='Delete' || buttonText=='Reject'?'danger':'success'}}" (click)="confirm()">{{buttonText || "Delete" }}</button>
+  </nb-card-footer>
+</nb-card>

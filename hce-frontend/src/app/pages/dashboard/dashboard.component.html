@@ -1,0 +1,245 @@
+<div class="row">
+  <nb-card-header>Filters</nb-card-header>
+  <div class="col-md-12 row">
+    <div class="from col-md-4">
+    <div class="form-group">
+      <label for="fromDate" class="label">Start date</label>
+      <input
+        nbInput
+        shape="box"
+        fullWidth
+        placeholder="From Date"
+        [(ngModel)]="fromDate"
+        [nbDatepicker]="from"
+      />
+      <nb-datepicker #from></nb-datepicker>
+    </div>
+  </div>
+    <div class="to col-md-4">
+      <div class="form-group">
+        <label for="toDate" class="label">End date</label>
+        <input
+          nbInput
+          shape="box"
+          fullWidth
+          placeholder="to Date"
+          [(ngModel)]="toDate"
+          [nbDatepicker]="to"
+        />
+        <nb-datepicker #to></nb-datepicker>
+      </div>
+    </div>
+    
+    <div class="dropdwon col-md-4">
+      <div class="form-group">
+        <nb-card >
+          
+            <nb-select placeholder="Select Showcase" [(selected)]="selectedItem">
+              <nb-option value="">Option empty</nb-option>
+              <nb-option value="0">Hourly</nb-option>
+              <nb-option value="1">Daily</nb-option>
+              <nb-option value="2">Weekly</nb-option>
+              <nb-option value="3">Monthly</nb-option>
+              <nb-option value="4">Quarterly</nb-option>
+            </nb-select>
+        </nb-card>
+    </div>
+  </div>
+  </div>
+  <div class="offset-3">
+    <nb-card>
+      <nb-card-header>Network NPS </nb-card-header>
+      <nb-card-body>
+        <ngx-speedometer-chart [value]="96"> </ngx-speedometer-chart>
+      </nb-card-body>
+    </nb-card>
+  </div>
+  
+<div class= "row" >
+  <div class="col-lg-4 " >
+    <nb-card>
+      <nb-card-header>Cairo NPS </nb-card-header>
+      <nb-card-body>
+        <ngx-speedometer2-chart  [value]="93"> </ngx-speedometer2-chart>
+      </nb-card-body>
+    </nb-card>
+  </div>
+  <div class="col-lg-4">
+    <nb-card>
+      <nb-card-header>Alexandria NPS </nb-card-header>
+      <nb-card-body>
+        <ngx-speedometer2-chart [value]="38"> </ngx-speedometer2-chart>
+      </nb-card-body>
+    </nb-card>
+  </div>
+  <div class="col-lg-4">
+    <nb-card>
+      <nb-card-header>Aswan NPS </nb-card-header>
+      <nb-card-body>
+        <ngx-speedometer2-chart [value]="12"> </ngx-speedometer2-chart>
+      </nb-card-body>
+    </nb-card>
+  </div>
+</div>
+
+  <div class="col-lg-6">
+    <nb-card>
+      <nb-card-header>Call Setup Success Ratio – 2G </nb-card-header>
+      <nb-card-body>
+        <ngx-success-ratio-stats> </ngx-success-ratio-stats>
+      </nb-card-body>
+    </nb-card>
+  </div>
+  <div class="col-lg-6">
+    <nb-card>
+      <nb-card-header>Call Drop Ratio – 2G</nb-card-header>
+      <nb-card-body>
+        <ngx-success-ratio-stats> </ngx-success-ratio-stats>
+      </nb-card-body>
+    </nb-card>
+  </div>
+  <div class="col-lg-6">
+    <nb-card>
+      <nb-card-header>Call setup Time – 2G </nb-card-header>
+      <nb-card-body>
+        <ngx-success-ratio-stats> </ngx-success-ratio-stats>
+      </nb-card-body>
+    </nb-card>
+  </div>
+  <div class="col-lg-6">
+    <nb-card>
+      <nb-card-header>Voice MOS – 2G </nb-card-header>
+      <nb-card-body>
+        <ngx-success-ratio-stats> </ngx-success-ratio-stats>
+      </nb-card-body>
+    </nb-card>
+  </div>
+  <div class="col-lg-6">
+    <nb-card>
+      <nb-card-header>Call Setup Success Ratio – 3G </nb-card-header>
+      <nb-card-body>
+        <ngx-success-ratio-stats> </ngx-success-ratio-stats>
+      </nb-card-body>
+    </nb-card>
+  </div>
+  <div class="col-lg-6">
+    <nb-card>
+      <nb-card-header>Call Drop Ratio – 3G </nb-card-header>
+      <nb-card-body>
+        <ngx-success-ratio-stats> </ngx-success-ratio-stats>
+      </nb-card-body>
+    </nb-card>
+  </div>
+  <div class="col-lg-6">
+    <nb-card>
+      <nb-card-header>Call setup Time – 3G </nb-card-header>
+      <nb-card-body>
+        <ngx-success-ratio-stats> </ngx-success-ratio-stats>
+      </nb-card-body>
+    </nb-card>
+  </div>
+  <div class="col-lg-6">
+    <nb-card>
+      <nb-card-header>Voice MOS – 3G </nb-card-header>
+      <nb-card-body>
+        <ngx-success-ratio-stats> </ngx-success-ratio-stats>
+      </nb-card-body>
+    </nb-card>
+  </div>
+  <div class="col-lg-6">
+    <nb-card>
+      <nb-card-header>HTTP UL/DL success ratio </nb-card-header>
+      <nb-card-body>
+        <ngx-success-ratio-stats> </ngx-success-ratio-stats>
+      </nb-card-body>
+    </nb-card>
+  </div>
+  <div class="col-lg-6">
+    <nb-card>
+      <nb-card-header>HTTP DL throughput </nb-card-header>
+      <nb-card-body>
+        <ngx-success-ratio-stats> </ngx-success-ratio-stats>
+      </nb-card-body>
+    </nb-card>
+  </div>
+  <div class="col-lg-6">
+    <nb-card>
+      <nb-card-header>HTTP UL throughput </nb-card-header>
+      <nb-card-body>
+        <ngx-success-ratio-stats> </ngx-success-ratio-stats>
+      </nb-card-body>
+    </nb-card>
+  </div>
+  <div class="col-lg-6">
+    <nb-card>
+      <nb-card-header>Video Success Ratio </nb-card-header>
+      <nb-card-body>
+        <ngx-success-ratio-stats> </ngx-success-ratio-stats>
+      </nb-card-body>
+    </nb-card>
+  </div>
+  <div class="col-lg-6">
+    <nb-card>
+      <nb-card-header>Video Setup </nb-card-header>
+      <nb-card-body>
+        <ngx-success-ratio-stats> </ngx-success-ratio-stats>
+      </nb-card-body>
+    </nb-card>
+  </div>
+  <div class="col-lg-6">
+    <nb-card>
+      <nb-card-header>Video MOS </nb-card-header>
+      <nb-card-body>
+        <ngx-success-ratio-stats> </ngx-success-ratio-stats>
+      </nb-card-body>
+    </nb-card>
+  </div>
+  <div class="col-lg-6">
+    <nb-card>
+      <nb-card-header>Browsing Success Ratio </nb-card-header>
+      <nb-card-body>
+        <ngx-success-ratio-stats> </ngx-success-ratio-stats>
+      </nb-card-body>
+    </nb-card>
+  </div>
+  <div class="col-lg-6">
+    <nb-card>
+      <nb-card-header>Browsing Duration </nb-card-header>
+      <nb-card-body>
+        <ngx-success-ratio-stats> </ngx-success-ratio-stats>
+      </nb-card-body>
+    </nb-card>
+  </div>
+  <div class="col-lg-6">
+    <nb-card>
+      <nb-card-header>Social Media Success Ratio </nb-card-header>
+      <nb-card-body>
+        <ngx-success-ratio-stats> </ngx-success-ratio-stats>
+      </nb-card-body>
+    </nb-card>
+  </div>
+  <div class="col-lg-6">
+    <nb-card>
+      <nb-card-header>Social Media Duration </nb-card-header>
+      <nb-card-body>
+        <ngx-success-ratio-stats> </ngx-success-ratio-stats>
+      </nb-card-body>
+    </nb-card>
+  </div>
+  <div class="col-lg-6">
+    <nb-card>
+      <nb-card-header>DL Throughput </nb-card-header>
+      <nb-card-body>
+        <ngx-success-ratio-stats> </ngx-success-ratio-stats>
+      </nb-card-body>
+    </nb-card>
+  </div>
+  <div class="col-lg-6">
+    <nb-card>
+      <nb-card-header>UL Throughput </nb-card-header>
+      <nb-card-body>
+        <ngx-success-ratio-stats> </ngx-success-ratio-stats>
+      </nb-card-body>
+    </nb-card>
+  </div>
+</div>

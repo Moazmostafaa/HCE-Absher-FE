@@ -1,0 +1,36 @@
+<nb-card>
+    <nb-card-header>Create access technology</nb-card-header>
+    <nb-card-body>
+        <form [formGroup]="createForm" (ngSubmit)="onSubmit()">
+            <div class="row">
+                <div class="col-sm-6">
+                    <!--Service name -->
+                    <div class="form-group">
+                        <label for="serviceName" class="label">Service name</label>
+                        <input [status]="fc.serviceName.touched && fc.serviceName.errors? 'danger': 'basic'" type="text"
+                            formControlName="serviceName" nbInput shape="round" fullWidth id="serviceName">
+                        <mat-error *ngIf="fc.serviceName.touched && fc.serviceName.hasError('required')">
+                            Service name is required
+                        </mat-error>
+                    </div>
+                </div>
+
+                <div class="col-sm-6">
+                    <!--Service description -->
+                    <div class="form-group">
+                        <label for="serviceDesc" class="label">Service description</label>
+                        <input [status]="fc.serviceDesc.touched && fc.serviceDesc.errors? 'danger': 'basic'" type="text"
+                            formControlName="serviceDesc" nbInput shape="round" fullWidth id="serviceDesc">
+                        <mat-error *ngIf="fc.serviceDesc.touched && fc.serviceDesc.errors">
+                            Service description is required
+                        </mat-error>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-2">
+                <button class="floatingBtn m-2" [disabled]="createForm.invalid" type="submit" status="primary"
+                    nbButton>Save</button>
+            </div>
+        </form>
+    </nb-card-body>
+</nb-card>

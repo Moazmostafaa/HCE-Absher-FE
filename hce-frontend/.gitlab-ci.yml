@@ -1,0 +1,18 @@
+  stages:
+    - build
+
+  dev_build:
+    stage: build
+    only:
+      - Dev
+    artifacts:
+      paths:
+        - $CI_PROJECT_DIR/dist
+    script:
+      - npm i
+      - ng build --c=dev
+      - Remove-Item "C:\Domains\hce.smartwaveeg.com\*" -Exclude web.config -Recurse
+      - $distPath = Join-Path -Path (Get-Location).Path -ChildPath "dist\*"
+      - Copy-Item -Path $distPath -Destination "C:\Domains\hce.smartwaveeg.com" -Recurse
+    environment:
+        name: Dev

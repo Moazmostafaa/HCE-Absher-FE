@@ -1,0 +1,177 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,600,700&display=swap');
+
+// themes - our custom or/and out of the box themes
+@import 'themes';
+
+// framework component themes (styles tied to theme variables)
+@import '~@nebular/theme/styles/globals';
+@import '~@nebular/auth/styles/globals';
+
+@import '~bootstrap/scss/functions';
+@import '~bootstrap/scss/variables';
+@import '~bootstrap/scss/mixins';
+@import '~bootstrap/scss/grid';
+
+// loading progress bar theme
+@import './pace.theme';
+
+@import './layout';
+@import './overrides';
+
+// install the framework and custom global styles
+@include nb-install() {
+
+  // framework global styles
+  @include nb-theme-global();
+  @include nb-auth-global();
+
+  @include ngx-layout();
+  // loading progress bar
+  @include ngx-pace-theme();
+
+  @include nb-overrides();
+};
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+/*start color applay*/
+.nb-theme-default nb-menu .menu-item a.active{
+  color: #FF7E4D;
+}
+.nb-theme-default nb-menu .menu-item a.active .menu-icon,.nb-theme-default nb-menu .menu-item > .menu-items > .menu-item a.active .menu-icon,.nb-theme-default nb-menu .menu-item > .menu-items > .menu-item a:hover .menu-icon {
+  color: #FF7E4D !important;
+}
+.nb-theme-default nb-menu .menu-item a {
+  color: #222b45;
+}
+.nb-theme-default nb-menu .menu-item a:hover {
+  background-color: transparent;
+  color: #FF7E4D;
+  cursor: pointer;
+}
+.nb-theme-default nb-menu .menu-item a:hover .menu-icon,.nb-theme-default nb-menu .menu-item > .menu-items > .menu-item a:hover,.nb-theme-default nb-menu .menu-item > .menu-items > .menu-item a.active,.nb-theme-default nb-menu .menu-item > .menu-items > .menu-item a.active:hover,.nb-theme-default nb-menu .menu-item > .menu-items > .menu-item a.active:hover .menu-icon{
+  color: #FF7E4D;
+}
+.nb-theme-default nb-sidebar.compacted nb-menu .menu-item a.active::before{
+  background: #FF7E4D;
+}
+.nb-theme-default nb-radio.status-basic .native-input:enabled:checked + .outer-circle,.nb-theme-default nb-radio.status-basic label:hover .native-input:enabled + .outer-circle,.nb-theme-default nb-menu .menu-item > .menu-items > .menu-item a.active,.nb-theme-default nb-menu .menu-item > .menu-items > .menu-item a.active:hover{
+  border-color: #FF7E4D !important;
+}
+.nb-theme-default [nbButton].appearance-filled.status-primary, .nb-theme-default .appearance-filled.status-primary[nbButtonToggle]{
+  background-color: #0d373c !important;
+  border-color: #0d373c !important;
+}
+.nb-theme-default [nbButton].appearance-filled.status-primary:hover, .nb-theme-default .appearance-filled.status-primary:hover[nbButtonToggle] {
+  background-color: #FF7E4D !important;
+  border-color: #FF7E4D !important;
+}
+.mat-flat-button.mat-primary, .mat-raised-button.mat-primary, .mat-fab.mat-primary, .mat-mini-fab.mat-primary {
+  background-color: #0d373c !important;
+}
+.mat-flat-button.mat-warn, .mat-raised-button.mat-warn, .mat-fab.mat-warn, .mat-mini-fab.mat-warn {
+  background-color: #FF7E4D !important;
+}
+.nb-theme-default nb-option.selected{
+  background-color: #0d373c !important;
+  color: white !important;
+}
+.nb-theme-default nb-option:hover.selected,.nb-theme-default nb-radio.status-basic .native-input:enabled:checked ~ .inner-circle {
+  background-color: #FF7E4D !important;
+}
+.nb-theme-default .pace .pace-progress {
+  background: #d38f65 !important;
+}
+.mat-calendar-body-selected {
+  background-color: #d38f65;
+  color: #fff;
+}
+
+.filterArea {
+  background-color: white;
+  padding: 10px;
+  margin: 15px 0;
+  // box-shadow: 0 3px 6px 0 hsl(0deg 0% 44% / 16%);
+  h3.headerTitle {
+    font-size: 20px;
+    border-bottom: 1px solid #e7e7e7;
+    color: #52596d;
+    font-weight: 600;
+}
+}
+.nb-theme-default nb-card-body{
+  padding: 0;
+}
+.nb-theme-default nb-card{
+  border: 0 !important;
+}
+.nb-theme-default nb-toggle.status-basic .toggle.checked {
+  background-color: #0d373c;
+  border-color: #0d373c;
+}
+.nb-theme-default nb-toggle.status-basic .toggle-switcher nb-icon {
+  color: #0d373c;
+}
+.nb-theme-default nb-toggle.status-basic .native-input:enabled + .toggle:hover.checked {
+  background-color: #0d373c;
+  border-color: #0d373c;
+}
+.nb-theme-default nb-toggle.status-basic .native-input:enabled + .toggle:hover {
+  border-color: #0d373c;
+}
+nb-card{
+  width: 100%;
+  position: relative;
+  top: 17px;
+}
+.nb-theme-default nb-toggle.status-basic .toggle.checked {
+  background-color: #0d373c;
+  border-color: #0d373c;
+}
+nb-card-body{
+  padding: 15px !important;
+  padding-top: 0 !important;
+}
+.autoCompleteInput{
+  input{
+    width: 100% !important;
+    display: block;
+    max-width: 100% !important;
+    border-radius: 25px !important;
+    height: 40px;
+  }
+}
+.iti{
+  width: 100%;
+  padding-left: 55px;
+}
+.successAlert {
+  background-color: #ECF0F6;
+  color: white;
+  padding: 10px;
+  border-radius: 5px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 14px;
+}
+.infoAlert {
+  background-color: #FF7E4D;
+  color: white;
+  padding: 10px;
+  border-radius: 5px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 14px;
+}
+.nb-theme-default nb-menu .menu-group, .nb-theme-default nb-menu .menu-group nb-icon.menu-icon {
+  color: #ECF0F6;
+  font-size: 14px;
+  font-weight: bolder;
+}
+button.floatingBtn {
+  float: right;
+}
+/*end color applay*/

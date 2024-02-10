@@ -1,0 +1,15 @@
+table {
+  width: 100%;
+}
+nb-card {
+  width: 100%;
+}
+
+.headerWithControls{
+  justify-content: space-between;
+  button{
+    max-width: fit-content;
+    position: relative;
+    top: -11px;
+  }
+}

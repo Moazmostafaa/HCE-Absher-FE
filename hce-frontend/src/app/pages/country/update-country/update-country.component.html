@@ -1,0 +1,128 @@
+<nb-card>
+  <nb-card-header>Update Country</nb-card-header>
+  <nb-card-body>
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <div class="row">
+        <div class="col-sm-6">
+          <!--Country name en-->
+          <div class="form-group">
+            <label for="nameEn" class="label">Name english</label>
+            <input
+              [status]="
+                fc.nameEn.touched && fc.nameEn.errors ? 'danger' : 'basic'
+              "
+              type="text"
+              formControlName="nameEn"
+              nbInput
+              shape="round"
+              fullWidth
+              id="nameEn"
+            />
+            <mat-error
+              *ngIf="fc.nameEn.touched && fc.nameEn.hasError('required')"
+            >
+              Country Name English is required
+            </mat-error>
+          </div>
+        </div>
+
+        <div class="col-sm-6">
+          <!--Country name ar-->
+          <div class="form-group">
+            <label for="nameAr" class="label">Name arabic</label>
+            <input
+              [status]="
+                fc.nameAr.touched && fc.nameAr.errors ? 'danger' : 'basic'
+              "
+              type="text"
+              formControlName="nameAr"
+              nbInput
+              shape="round"
+              fullWidth
+              id="nameAr"
+            />
+            <mat-error
+              *ngIf="fc.nameAr.touched && fc.nameAr.hasError('required')"
+            >
+              Country Name arabic is required
+            </mat-error>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <!-- Country Description -->
+          <div class="form-group">
+            <label for="nameLang" class="label">Name Language</label>
+            <input
+              [status]="
+                fc.nameLang.touched && fc.nameLang.errors ? 'danger' : 'basic'
+              "
+              type="text"
+              formControlName="nameLang"
+              nbInput
+              shape="round"
+              fullWidth
+              id="nameLang"
+            />
+            <mat-error
+              *ngIf="fc.nameLang.touched && fc.nameLang.hasError('required')"
+            >
+              Country Description is required
+            </mat-error>
+          </div>
+        </div>
+
+        <div class="col-sm-6">
+          <!-- Country Description -->
+          <div class="form-group">
+            <label for="desc" class="label">Description</label>
+            <input
+              [status]="fc.desc.touched && fc.desc.errors ? 'danger' : 'basic'"
+              type="text"
+              formControlName="desc"
+              nbInput
+              shape="round"
+              fullWidth
+              id="desc"
+            />
+            <mat-error *ngIf="fc.desc.touched && fc.desc.hasError('required')">
+              Country Description is required
+            </mat-error>
+          </div>
+        </div>
+
+        <div class="col-sm-6">
+          <!--Name lang -->
+          <label for="worldRegionId" class="label">Region</label>
+          <nb-select
+            [status]="fc.worldRegionId.errors ? 'danger' : 'basic'"
+            formControlName="worldRegionId"
+            id="worldRegionId"
+            shape="round"
+            fullWidth
+          >
+            <nb-option value="">No data selected</nb-option>
+            <nb-option *ngFor="let region of regions" [value]="region.regionId">
+              {{ region.regionNameEn }}</nb-option
+            >
+            <mat-error
+              *ngIf="fc.worldRegionId.touched && fc.worldRegionId.errors"
+            >
+              world region is required
+            </mat-error>
+          </nb-select>
+        </div>
+      </div>
+      <div class="row mt-2">
+        <button
+          class="floatingBtn m-2"
+          [disabled]="form.invalid"
+          type="submit"
+          status="primary"
+          nbButton
+        >
+          Save
+        </button>
+      </div>
+    </form>
+  </nb-card-body>
+</nb-card>

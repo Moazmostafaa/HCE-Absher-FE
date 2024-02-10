@@ -1,0 +1,37 @@
+<nb-card>
+    <nb-card-header>Update Vendor</nb-card-header>
+    <nb-card-body>
+        <form [formGroup]="updateForm" (ngSubmit)="onSubmit()">
+            <div class="row">
+                <div class="col-sm-6">
+                    <!--Vendor name -->
+                    <div class="form-group">
+                        <label for="vendorName" class="label">Vendor name</label>
+                        <input [status]="fc.vendorName.touched && fc.vendorName.errors? 'danger': 'basic'" type="text"
+                            formControlName="vendorName" nbInput shape="round" fullWidth id="vendorName">
+                        <mat-error *ngIf="fc.vendorName.touched && fc.vendorName.hasError('required')">
+                            Vendor name is required
+                        </mat-error>
+                    </div>
+                </div>
+
+                <div class="col-sm-6">
+                    <!--Vendor description -->
+                    <div class="form-group">
+                        <label for="vendorDesc" class="label">Vendor description</label>
+                        <input [status]="fc.vendorDesc.touched && fc.vendorDesc.errors? 'danger': 'basic'" type="text"
+                            formControlName="vendorDesc" nbInput shape="round" fullWidth id="vendorDesc">
+                        <mat-error *ngIf="fc.vendorDesc.touched && fc.vendorDesc.errors">
+                            Vendor description is required
+                        </mat-error>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-2">
+                <button class="floatingBtn m-2" [disabled]="updateForm.invalid" type="submit" status="primary"
+                    nbButton>Save</button>
+            </div>
+        </form>
+    </nb-card-body>
+</nb-card>
+
