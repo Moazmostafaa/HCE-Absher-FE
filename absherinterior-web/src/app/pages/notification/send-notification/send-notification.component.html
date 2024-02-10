@@ -1,0 +1,45 @@
+<nb-card class="col-md-8 offset-2">
+    <nb-card-header>{{'Send notification to everyone' |translate}}</nb-card-header>
+    <nb-card-body>
+        <form [formGroup]="notificationForm" (ngSubmit)="onSubmit()">
+            <div class="row">
+                <div class="col-sm-12">
+                    <!--Title -->
+                    <div class="form-group">
+                        <label for="title" class="label">{{'Title' |translate}}</label>
+                        <input [status]="fc.title.touched && fc.title.errors? 'danger': 'basic'" type="text"
+                            formControlName="title" nbInput shape="round" fullWidth id="title">
+                        <mat-error
+                            *ngIf="fc.title.touched && fc.title.hasError('minlength') && !fc.title.hasError('required')">
+                            {{'Title must be at least 3 characters' |translate}}
+                        </mat-error>
+                        <mat-error *ngIf="fc.title.touched && fc.title.hasError('required')">
+                            {{'Title is required' |translate}}
+                        </mat-error>
+                    </div>
+                </div>
+                <div class="col-sm-12">
+                    <!--Body -->
+                    <div class="form-group">
+                        <label for="message" class="label">{{'Message' |translate}}</label>
+                        <textarea [status]="fc.message.touched && fc.message.errors? 'danger': 'basic'"
+                            type="text" formControlName="message" nbInput shape="round" fullWidth
+                            id="message"></textarea>
+                        <mat-error
+                            *ngIf="fc.message.touched && fc.message.hasError('minlength') && !fc.message.hasError('required')">
+                            {{'Message must be at least 3 characters' |translate}}
+                        </mat-error>
+                        <mat-error *ngIf="fc.message.touched && fc.message.hasError('required')">
+                           {{'Message is required' |translate}}
+                        </mat-error>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-2">
+                <button class="offset-md-11" [disabled]="notificationForm.invalid" type="submit" status="primary"
+                    nbButton>{{'Send' |translate}}</button>
+            </div>
+
+        </form>
+    </nb-card-body>
+</nb-card>

@@ -1,0 +1,36 @@
+.singleCard {
+    box-shadow: 0 0 5px #3a3a3a33;
+    padding: 15px;
+    display: flex;
+    border-radius: 13px;
+    background-color: whitesmoke;
+    cursor: pointer;
+    margin-bottom: 20px;
+    .cardIcon {
+        font-size: 30px;
+        height: 50px;
+        width: 50px;
+        text-align: center;
+        padding-top: 7px;
+        color: #d1ab40;
+    }
+    .textualCard{
+       h3{
+        font-size: 17px;
+        line-height: 1.2rem;
+        margin: 0 10px;
+        margin-bottom: 18px;
+        height: 40px;
+        overflow: hidden;
+        }
+        p{
+            font-size: 20px;
+            margin: 0 10px;
+            color: gray;
+        }
+    }
+    &:hover{
+        transform: scale(1.01,1.01);
+        transition: .3s ease-in-out;
+    }
+}

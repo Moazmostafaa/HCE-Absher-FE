@@ -1,0 +1,73 @@
+<div id="overflow">
+
+    <div class="row">
+        <div class="col-sm-4">
+            <!--Parent Category -->
+            <div class="form-group">
+                <label for="parentCategoryId" class="label">{{'Invite users' |translate}}</label>
+                <div class="row">
+                    <input class="col-md-9" #autoInput nbInput shape="round" fullWidth type="text" (input)="onChange()"
+                    placeholder="{{'Invite users' |translate}}" [nbAutocomplete]="auto" />
+                    
+                    <nb-autocomplete #auto (selectedChange)="onSelectionChange($event)">
+                        
+                        <nb-option *ngFor="let user of users" [value]="user">
+                            {{ user.fullName }}
+                        </nb-option>
+                        
+                    </nb-autocomplete>
+                    <button class="mr-2 col-md-2" type="button" (click)="inviteSelected()" status="primary" nbButton>{{'Invite' |translate}}</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="row" >
+        <div class="col-md-2"
+        *ngFor="let user of selectedUsers; let i = index;">
+          <div class="form-group">
+            <label class="label ml-2">{{user.fullName}}</label>
+            <button mat-mini-fab color="warn"(click)="removeUser(user.userId)">
+                <mat-icon>delete</mat-icon>
+            </button>
+          </div>
+        </div>
+      </div>
+
+    <table mat-table [dataSource]="sentRequests" class="mat-elevation-z8">
+
+        <!--- Note that these columns can be defined in any order.
+            The actual rendered columns are set as a property on the row definition" -->
+        <!-- owner Column -->
+        <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef> {{'User name' |translate}} </th>
+            <td mat-cell *matCellDef="let element"> {{element.receiver.fullName}} </td>
+        </ng-container>
+
+        <!-- title Column -->
+        <ng-container matColumnDef="invitationDate">
+            <th mat-header-cell *matHeaderCellDef> {{'Invitation date' |translate}} </th>
+            <td mat-cell *matCellDef="let element"> {{element.creationDate | date: "dd/MM/yyyy"}} </td>
+        </ng-container>
+
+        <!-- actions Column -->
+        <!-- <ng-container matColumnDef="actions">
+            <th mat-header-cell *matHeaderCellDef> {{'Actions' |translate}} </th>
+            <td mat-cell *matCellDef="let element">
+                <button *ngIf="event.privacyType == 1" nbButton ghost status="primary"
+                    (click)="accept(element.receiver.userId)">
+                    <nb-icon icon="checkmark-outline"></nb-icon>
+                </button>
+                <button nbButton ghost status="danger" (click)="reject(element.receiver.userId)">
+                    <nb-icon icon="close-outline"></nb-icon>
+                </button>
+            </td>
+        </ng-container> -->
+
+        <tr mat-header-row *matHeaderRowDef="columns"></tr>
+        <tr mat-row *matRowDef="let row; columns: columns;"></tr>
+    </table>
+    <mat-paginator [dir]='dir' [length]="sentRequestsRecords" [pageIndex]="searchModel.PageNumber-1"
+        [pageSize]="searchModel.PageSize" [pageSizeOptions]="pageSizeOptions"
+        (page)="sentRequestsSearch($event)" showFirstLastButtons></mat-paginator>
+</div>

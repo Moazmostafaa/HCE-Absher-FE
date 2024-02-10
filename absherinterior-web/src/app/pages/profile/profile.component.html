@@ -1,0 +1,54 @@
+<nb-card>
+    <nb-card-header>
+        <h2>{{user?.fullName}}</h2>
+    </nb-card-header>
+    <nb-card-body>
+        <div class="row">
+            <div class="col-sm-6">
+                <!--Start date -->
+                <div class="form-group">
+                    <nb-user size="giant" name="{{'Profile image' | translate}}" [picture]="profileImage">
+                    </nb-user>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <!--Start date -->
+                <div class="form-group">
+                    <nb-user size="giant" name="{{'Identification image' | translate}}" [picture]="identificationImage">
+                    </nb-user>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <!--Registration start date  -->
+                <div class="form-group">
+                    <label for="userName" class="label">{{'User name' |translate}}</label>
+                    <input readonly nbInput shape="round" [(ngModel)]='user.userName' fullWidth
+                        id="userName">
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <!--Registration end date  -->
+                <div class="form-group">
+                    <label for="phoneNumber" class="label">{{'Phone' |translate}}</label>
+                    <input readonly nbInput shape="round" [(ngModel)]='user.phoneNumber' fullWidth
+                        id="phoneNumber">
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <!--Event location -->
+                <div class="form-group">
+                    <label for="gender" class="label">{{'Gender' |translate}}</label>
+                    <input readonly nbInput shape="round" fullWidth id="gender" [(ngModel)]='gender'>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <!--Event category -->
+                <div class="form-group">
+                    <label for="eventName" class="label">{{'NationalId' |translate}}</label>
+                    <input readonly nbInput shape="round" [(ngModel)]="user.nationalId" fullWidth id="nationalId">
+                </div>
+            </div>
+        </div>
+        <button class="floatingBtn"  type="button" (click)="edit()" status="primary"  nbButton>{{'Update' |translate}}</button>
+    </nb-card-body>
+</nb-card>

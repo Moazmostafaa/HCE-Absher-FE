@@ -1,0 +1,151 @@
+<nb-card [nbSpinner]="isLoading" nbSpinnerStatus="primary" nbSpinnerSize="giant">
+    <nb-card-header>{{'Add post' |translate}}</nb-card-header>
+    <nb-card-body>
+        <form [formGroup]="postForm" (ngSubmit)="onSubmit()">
+            <div class="row">
+                <!--Post Type -->
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label for="postType" class="label">{{'Post Type' |translate}}</label>
+                        <nb-select [status]="submitted && fc.postType.errors? 'danger': 'basic'"
+                            (selectedChange)="changePostType($event)" formControlName="postType" id="postType"
+                            shape="round" fullWidth>
+                            <nb-option *ngFor="let type of Types;let i=index" [value]='i+1'>
+                                {{type |translate}}</nb-option>
+                            <mat-error *ngIf="submitted && fc.postType.hasError('required')">
+                                
+                                {{'This Field is Required' | translate}}
+                            </mat-error>
+                        </nb-select>
+                    </div>
+                </div>
+                <!--No Of Valid Days --> 
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label for="noOfValidDays" class="label">{{'Valid for days' |translate}}</label>
+                        <nb-select
+                            [status]="(fc.noOfValidDays.touched || submitted) && fc.noOfValidDays.errors? 'danger': 'basic'"
+                            placeholder="{{'Number of days' |translate}}" formControlName="noOfValidDays"
+                            id="noOfValidDays" shape="round" fullWidth>
+                            <nb-option *ngFor="let day of Days;let i=index" [value]='i+1'>
+                                {{i+1}}</nb-option>
+                            <mat-error
+                                *ngIf="(fc.noOfValidDays.touched || submitted) && fc.noOfValidDays.hasError('required')">
+                                {{'This Field is Required' | translate}}
+                            </mat-error>
+                        </nb-select>
+                    </div>
+                </div>
+                <!--Post Text -->
+                <div *ngIf="currentType!=4" class="col-sm-6">
+                    <div class="form-group">
+                        <label for="postText" class="label">{{'Post text' |translate}}</label>
+                        <textarea [status]="submitted && fc.postText.errors? 'danger': 'basic'"
+                            formControlName="postText" nbInput shape="round" fullWidth id="postText"
+                            placeholder="{{'Ex: Hello world' |translate}}"></textarea>
+                        <mat-error
+                            *ngIf="submitted && fc.postText.hasError('minlength') && !fc.postText.hasError('required')">
+                            {{'min length 3 Letters' | translate}}
+                        </mat-error>
+                        <mat-error *ngIf="submitted && fc.postText.hasError('required')">
+                            {{'This Field is Required' | translate}}
+                        </mat-error>
+                    </div>
+                </div>
+                <!--Post Image -->
+                <div *ngIf="currentType==2" class="col-md-12">
+                    <label for="postPhoto" class="label">{{'Post photos' |translate}}</label>
+                    <div class="d-flex">
+                        <div *ngFor="let file of files;let i=index" class="uploadImg">
+                            <img src="{{file.fileData | base64Image: file.extension}}" (click)="upload.click()"
+                                onerror="this.onerror=null;this.src='assets/images/placeholder.png';" alt="">
+                            <i (click)="deleteAttachment(file.id)" class="fas fa-trash"></i>
+                        </div>
+                        <div class="uploadImg">
+                            <img src="assets/images/placeholder.png" (click)="upload.click()"
+                                onerror="this.onerror=null;this.src='assets/images/placeholder.png';" alt="">
+                            <i (click)="upload.click()" class="fas fa-camera"></i>
+                            <input nbInput accept="image/*" type="file" multiple #upload (change)="onSelectFile($event)" />
+                        </div>
+                    </div>
+                </div>
+                <!--Post Videos -->
+                <div *ngIf="currentType==3" class="col-md-12">
+                    <label for="postPhoto" class="label">{{'Post videos' |translate}}</label>
+                    <div class="d-flex">
+                        <div *ngFor="let file of files;let i=index" class="uploadImg">
+                            <img src="{{file.fileData | base64Image: file.extension}}" (click)="upload.click()"
+                                onerror="this.onerror=null;this.src='assets/images/placeholder.png';" alt="">
+                            <i (click)="deleteAttachment(file.id)" class="fas fa-trash"></i>
+                        </div>
+                        <div class="uploadImg">
+                            <img src="assets/images/placeholder.png" (click)="upload.click()"
+                                onerror="this.onerror=null;this.src='assets/images/placeholder.png';" alt="">
+                            <i (click)="upload.click()" class="fas fa-camera"></i>
+                            <input nbInput accept="video/mp4,video/x-m4v,video/*" type="file" multiple #upload (change)="onSelectVideo($event)" />
+                        </div>
+                    </div>
+                </div>
+                <!--Questions -->
+                <ng-container *ngIf="currentType==4">
+                    <div class="col-sm-6 questionInput">
+                        <div class="form-group">
+                            <label for="question" class="label">{{'Question' |translate}}</label>
+                            <input
+                                [status]="(fc.question.touched || submitted) && fc.question.errors? 'danger': 'basic'"
+                                type="text" formControlName="question" nbInput shape="round" fullWidth id="question"
+                                placeholder="{{'Ex: How old are you?' |translate}}">
+                            <mat-error
+                                *ngIf="(fc.question.touched || submitted) && fc.question.hasError('minlength') && !fc.question.hasError('required')">
+                                {{'min length 3 Letters' | translate}}
+                            </mat-error>
+                            <mat-error *ngIf="(fc.question.touched || submitted) && fc.question.hasError('required')">
+                                {{'This Field is Required' | translate}}
+                            </mat-error>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <!--poll deadline -->
+                        <div class="form-group">
+                            <label for="deadLineDays" class="label">{{'Poll deadline in days' |translate}}</label>
+                            <nb-select
+                                [status]="(fc.deadLineDays.touched || submitted) && fc.deadLineDays.errors? 'danger': 'basic'"
+                                placeholder="{{'Number of days' |translate}}" formControlName="deadLineDays"
+                                id="deadLineDays" shape="round" fullWidth>
+                                <nb-option *ngFor="let day of Days;let i=index" [value]='i+1'>
+                                    {{i+1}}</nb-option>
+                                <mat-error
+                                    *ngIf="(fc.deadLineDays.touched || submitted) && fc.deadLineDays.hasError('required')">
+                                    {{'This Field is Required' | translate}}
+                                </mat-error>
+                            </nb-select>
+                        </div>
+                    </div>
+                    <div class="col-md-6 question">
+                        <button type="button" class="addAnswer" (click)="addAnswer()">{{'Add your answer' |translate}}</button>
+                        <div formArrayName="question_answers"
+                            *ngFor="let quest of postForm.controls.question_answers?.value; let i = index; trackBy:trackByFn">
+                            <div class="row singleAnswer" [formGroupName]="i">
+                                <div class="form-group col-10">
+                                    <input placeholder="{{'Add your answer' |translate}}" class="form-control"
+                                        formControlName="answer_title" [value]="quest.answer_title">
+                                </div>
+                                <div class="col-1">
+                                    <button type="button" (click)="removeAnswer(i)" class="removeInput">
+                                        <i class="fa fa-trash" aria-hidden="true"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </ng-container>
+
+            </div>
+            <div class="row">
+                <button class="offset-md-11" [disabled]="postForm.invalid || isSubmitted" type="submit" status="primary"
+                    nbButton>{{'Save' |translate}}</button>
+            </div>
+
+        </form>
+    </nb-card-body>
+</nb-card>

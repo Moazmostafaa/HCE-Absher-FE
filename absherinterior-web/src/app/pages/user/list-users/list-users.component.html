@@ -1,0 +1,103 @@
+<div class="singlePage">
+    <div class="headerWithControls d-flex">
+        <h3>{{'Users' |translate}}</h3>
+        <button nbButton status='primary' [routerLink]="['/pages/user/add']" class="col align-self-end">
+            {{'Create' |translate}}
+        </button>
+    </div>
+    <table mat-table [dataSource]="users" class="mat-elevation-z8">
+
+        <!--- Note that these columns can be defined in any order.
+            The actual rendered columns are set as a property on the row definition" -->
+        <!-- Name Column -->
+        <ng-container matColumnDef="Name">
+            <th mat-header-cell *matHeaderCellDef> {{'Name' |translate}} </th>
+            <td mat-cell *matCellDef="let element"> {{element.fullName ? element.fullName :'-'}} </td>
+        </ng-container>
+
+        <!-- Note Column -->
+        <ng-container matColumnDef="Role">
+            <th mat-header-cell *matHeaderCellDef> {{'Role' |translate}} </th>
+            <td mat-cell *matCellDef="let element"> {{element.roles.length>0?element.roles[0].roleName:''}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="Email">
+            <th mat-header-cell *matHeaderCellDef> {{'Email' |translate}} </th>
+            <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="Phone">
+            <th mat-header-cell *matHeaderCellDef> {{'Phone' |translate}} </th>
+            <td mat-cell *matCellDef="let element"> {{element.phoneNumber}} </td>
+        </ng-container>
+
+
+        <!-- actions Column -->
+        <ng-container matColumnDef="actions">
+            <th mat-header-cell *matHeaderCellDef> {{'Actions' |translate}} </th>
+            <td mat-cell *matCellDef="let element">
+                <button mat-mini-fab color="primary" [routerLink]="['/pages/user/edit/', element.userId]" class="mr-1">
+                    <mat-icon>edit</mat-icon>
+                </button>
+                <button mat-mini-fab color="warn" (click)="delete(element.userId,element.fullName)">
+                    <mat-icon>delete</mat-icon>
+                </button>
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="Activate">
+            <th mat-header-cell *matHeaderCellDef> {{'Activate' |translate}} </th>
+            <td mat-cell *matCellDef="let element"> 
+                <nb-card>
+                    <nb-card-body class="example-items-col">
+                      <nb-toggle [(ngModel)]="element.isActive" (change)="changeStatus(element,dialog)"></nb-toggle>
+                    </nb-card-body>
+                  </nb-card>    
+            </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+    <mat-paginator [length]="totalCount" [pageIndex]="searchModel.PageNumber-1" [pageSize]="searchModel.PageSize"
+        [pageSizeOptions]="pageSizeOptions" (page)="search($event)" showFirstLastButtons></mat-paginator>
+</div>
+
+
+<ng-template #dialog let-data let-ref="dialogRef">
+    <nb-card>
+      <nb-card-header>{{'Deactivate user' |translate}}</nb-card-header>
+      <nb-card-body>
+        
+        <div class="assignForm">
+          <div>
+            <div class="form-group">
+            <label for="blockPeriod" class="label">{{'Period per day' | translate}}</label>
+            <input
+            [(ngModel)]="blockPeriod"
+            nbInput
+            type="number"
+            id="InputValue"
+            placeholder="Block period" />
+    
+        </div>
+        <div class="form-group">
+            <label for="userBlockLawId" class="label">{{'Block laws' | translate}}</label>
+            <nb-select
+            [(ngModel)]="userBlockLawId" fullWidth>
+                <nb-option *ngFor="let law of laws" [value]='law.userBlockLawId'>
+                    {{lang=='ar'?law.messageAr:law.messageEng}}</nb-option>
+            </nb-select>
+        </div>
+      
+          </div>
+         
+        </div>
+        
+      </nb-card-body>
+      <nb-card-footer>
+        <button class="submitBtn"  [disabled]="!userBlockLawId" nbButton type="button" (click)="deacivate(ref)" status="primary"
+        nbButton>{{'Deactivate' | translate}}</button>
+        <button nbButton id="closePass" (click)="ref.close()">Close</button>
+      </nb-card-footer>
+    </nb-card>
+  </ng-template>
+

@@ -1,0 +1,233 @@
+<nb-card>
+    <nb-card-header>{{'Edit event' |translate}}</nb-card-header>
+    <nb-card-body>
+        <form  [formGroup]="eventForm" (submit)="onSubmit()" >
+            <div class="row">
+                <div class="col-sm-6"> <!--Event name -->
+                    <div class="form-group">
+                        <label for="eventName" class="label">{{'Event name' |translate}}</label>
+                        <input [status]="fc.eventName.touched && fc.eventName.errors? 'danger': 'basic'" type="text"
+                            formControlName="eventName" nbInput shape="round" fullWidth id="eventName">
+                        <mat-error
+                            *ngIf="fc.eventName.touched && fc.eventName.hasError('minlength') && !fc.eventName.hasError('required')">
+                            {{'min length 3 Letters' | translate}}
+                        </mat-error>
+                        <mat-error *ngIf="fc.eventName.touched && fc.eventName.hasError('required')">
+                            {{'Event name is Required' | translate}}
+                        </mat-error>
+                        <div *ngIf="fc.eventName.touched && fc.eventName.errors?.noWhiteSpace">{{'White and empty spaces are not allowed' | translate}}</div>
+
+                    </div>
+                </div>
+                <div class="col-sm-6"> <!--Event location -->
+                    <div class="form-group">
+                        <label for="eventLocation" class="label">{{'Event location' |translate}}</label>
+                        <input [status]="fc.eventLocation.touched && fc.eventLocation.errors? 'danger': 'basic'" type="text"
+                            formControlName="eventLocation" nbInput shape="round" fullWidth id="eventLocation">
+                        <mat-error
+                            *ngIf="fc.eventLocation.touched && fc.eventLocation.hasError('minlength') && !fc.eventLocation.hasError('required')">
+                            {{'min length 3 Letters' | translate}}
+                        </mat-error>
+                        <mat-error *ngIf="fc.eventLocation.touched && fc.eventLocation.hasError('required')">
+                            {{'Event location is Required' | translate}}
+                        </mat-error>
+                        <div *ngIf="fc.eventLocation.touched && fc.eventLocation.errors?.noWhiteSpace">{{'White and empty spaces are not allowed' | translate}}</div>
+
+                    </div>
+                </div>
+                <div class="col-sm-6"> <!--Description -->
+                    <div class="form-group">
+                        <label for="desc" class="label">{{'Event description' |translate}}</label>
+                        <textarea [status]="fc.desc.touched && fc.desc.errors? 'danger': 'basic'" type="text"
+                            formControlName="desc" nbInput shape="round" fullWidth id="desc"></textarea>
+                        <mat-error
+                            *ngIf="fc.desc.touched && fc.desc.hasError('minlength') && !fc.desc.hasError('required')">
+                            {{'min length 6 Letters' | translate}}
+                        </mat-error>
+                        <mat-error *ngIf="fc.desc.touched && fc.desc.hasError('required')">
+                            {{'Event description is Required' | translate}}
+                        </mat-error>
+                        <div *ngIf="fc.desc.touched && fc.desc.errors?.noWhiteSpace">{{'White and empty spaces are not allowed' | translate}}</div>
+
+                    </div>
+                </div>
+                <div class="col-sm-6"> <!--Event agenda -->
+                    <div class="form-group">
+                        <label for="eventAgenda" class="label">{{'Event agenda' |translate}}</label>
+                        <textarea [status]="fc.eventAgenda.touched && fc.eventAgenda.errors? 'danger': 'basic'" type="text"
+                            formControlName="eventAgenda" nbInput shape="round" fullWidth id="eventAgenda"></textarea>
+                        <mat-error
+                            *ngIf="fc.eventAgenda.touched && fc.eventAgenda.hasError('minlength') && !fc.eventAgenda.hasError('required')">
+                            {{'min length 3 Letters' | translate}}
+                        </mat-error>
+                        <mat-error *ngIf="fc.eventAgenda.touched && fc.eventAgenda.hasError('required')">
+                            {{'Event agenda is Required' | translate}}
+                        </mat-error>
+                    </div>
+                </div>
+                <div class="col-sm-6"> <!--Start date -->
+                    <div class="form-group">
+                        <label for="startDate" class="label">{{'Start date' |translate}}</label>
+                        <input [nbDatepicker]="start" [status]=" (fc.startDate.errors || eventForm.hasError('startDateLessThanEndDate'))? 'danger': 'basic'" type="text"
+                            formControlName="startDate" nbInput shape="round" fullWidth id="startDate"
+                            placeholder="Ex: 03/05/2022">
+                        <nb-datepicker #start></nb-datepicker>
+                        <mat-error
+                            *ngIf=" fc.startDate.hasError('minlength') && !fc.startDate.hasError('required')">
+                            {{'min length 3 Letters' | translate}}
+                        </mat-error>
+                        <mat-error *ngIf=" fc.startDate.hasError('required')">
+                            {{'Start Date is Required' | translate}}
+                        </mat-error>
+
+                        <mat-error *ngIf=" fc.startDate.hasError('lessThanToday')">
+
+                          {{'Date must be greater than or equal today' | translate}}
+                      </mat-error>
+                      <mat-error *ngIf="eventForm.hasError('startDateLessThanEndDate')">
+
+                          {{'start date must be less than or equal to end date' | translate}}
+                      </mat-error>
+                    </div>
+                </div>
+                <div class="col-sm-6"> <!--End date -->
+                    <div class="form-group">
+                        <label for="endDate" class="label">{{'End date' |translate}}</label>
+                        <input [nbDatepicker]="End" [status]="fc.startDate.errors? 'danger': 'basic'" type="text"
+                            formControlName="endDate" nbInput shape="round" fullWidth id="endDate"
+                            placeholder="Ex: 13/11/2022">
+                            <nb-datepicker #End></nb-datepicker>
+                        <mat-error
+                            *ngIf="fc.endDate.hasError('minlength') && !fc.endDate.hasError('required')">
+                            {{'min length 3 Letters' | translate}}
+                        </mat-error>
+                        <mat-error *ngIf="fc.endDate.hasError('required')">
+                            {{'End Date is Required' | translate}}
+                        </mat-error>
+
+                        <mat-error *ngIf="fc.endDate.hasError('lessThanToday')">
+
+                          {{'Date must be greater than or equal today' | translate}}
+                      </mat-error>
+                    </div>
+                </div>
+                <div class="col-sm-6"> <!--Registration start date -->
+                    <div class="form-group">
+                        <label for="regStartDate" class="label">{{'Registration start date' |translate}}</label>
+                        <input [nbDatepicker]="regStartDate" [status]="(fc.regStartDate.errors || eventForm.hasError('regStartDateLessThanStartDate'))? 'danger': 'basic'" type="text"
+                            formControlName="regStartDate" nbInput shape="round" fullWidth id="regStartDate"
+                            placeholder="Ex: 03/05/2022">
+                        <nb-datepicker #regStartDate></nb-datepicker>
+
+                        <mat-error *ngIf="fc.regStartDate.hasError('lessThanToday')">
+
+                          {{'Date must be greater than or equal today' | translate}}
+                      </mat-error>
+
+                      <mat-error *ngIf="eventForm.hasError('regStartDateLessThanRegEndDate')">
+                        {{'Regestration start date must be less than or equal to regestration end date' | translate}}
+                    </mat-error>
+
+                      <mat-error *ngIf="eventForm.hasError('regStartDateLessThanStartDate')">
+                        {{'Regestration start date must be less than or equal to event start date' | translate}}
+                    </mat-error>
+
+                    </div>
+                </div>
+                <div class="col-sm-6"> <!--Registration end date -->
+                    <div class="form-group">
+                        <label for="regEndDate" class="label">{{'Registration end date' |translate}}</label>
+                        <input [nbDatepicker]="regEndDate" [status]="fc.regEndDate.errors? 'danger': 'basic'" type="text"
+                            formControlName="regEndDate" nbInput shape="round" fullWidth id="regEndDate"
+                            placeholder="Ex: 13/11/2022">
+                            <nb-datepicker #regEndDate></nb-datepicker>
+
+                            <mat-error *ngIf="(fc.regEndDate.hasError('lessThanToday') || eventForm.hasError('regEndDateLessThanEndDate'))">
+
+                              {{'Date must be greater than or equal today' | translate}}
+                          </mat-error>
+
+                          <mat-error *ngIf="eventForm.hasError('regEndDateLessThanEndDate')">
+                            {{'Regestration end date must be less than or equal to event end date' | translate}}
+                        </mat-error>
+                    </div>
+                </div>
+                <div class="col-sm-6"> <!--Event duration -->
+                    <div class="form-group">
+                        <label for="eventDuration" class="label">{{'Event duration in days' |translate}}</label>
+                        <input type="number" [status]="fc.eventDuration.touched && fc.eventDuration.errors? 'danger': 'basic'" type="text"
+                            formControlName="eventDuration" nbInput shape="round" fullWidth id="eventDuration">
+
+                        <mat-error *ngIf="fc.eventDuration.touched && fc.eventDuration.hasError('required')">
+                            {{'Event duration is Required' | translate}}
+                        </mat-error>
+                    </div>
+                </div>
+                <div class="col-md-6"><!--Event category -->
+                    <div class="form-group">
+                        <label for="category" class="label">{{'Event category' |translate}}</label>
+                        <nb-select placeholder="{{'Choose a category' |translate}}" formControlName="eventCategoryId" id="eventCategoryId" shape="round" fullWidth>
+                            <nb-option *ngFor="let category of categories" [value]="category.categoryId">
+                                {{category.name}}</nb-option>
+                        </nb-select>
+                    </div>
+                </div>
+                <div class="col-md-6"> <!--Event type -->
+                    <div class="form-group">
+                        <label for="eventType" class="label">{{'Event type' |translate}}</label>
+                        <nb-select formControlName="eventType" id="type" shape="round" fullWidth>
+                            <nb-option *ngFor="let type of types;let i=index" [value]='i+1'>
+                                {{type |translate}}</nb-option>
+                        </nb-select>
+                    </div>
+                </div>
+                <div class="col-md-6"> <!--Event privacy -->
+                    <div class="form-group">
+                        <label for="privacyType" class="label">{{'Event privacy' |translate}}</label>
+                        <nb-select formControlName="privacyType" id="privacyType" shape="round" fullWidth>
+                            <nb-option *ngFor="let privacy of privacies;let i=index" [value]='i+1'>
+                                {{privacy |translate}}</nb-option>
+                        </nb-select>
+                    </div>
+                </div>
+                <div class="col-sm-6"> <!--Has limited seats -->
+                    <div class="form-group mt-4">
+                        <nb-checkbox  (change)="setCheckedStatus($event)" formControlName="hasLimtedSeats" >{{'Has limited seats' |translate}}</nb-checkbox>
+                    </div>
+                </div>
+                <div class="col-sm-6"> <!--Number of seats -->
+                    <div class="form-group">
+                        <label for="numberOfSeats" class="label">{{'Number of seats' |translate}}</label>
+                        <input  type="number" [status]="fc.numberOfSeats.touched && fc.numberOfSeats.errors? 'danger': 'basic'"
+                            formControlName="numberOfSeats" nbInput shape="round" fullWidth id="numberOfSeats" disabled>
+
+                        <mat-error *ngIf="fc.numberOfSeats.touched && fc.numberOfSeats.hasError('required')">
+                            {{'Number of seats is Required' | translate}}
+                        </mat-error>
+                    </div>
+                </div>
+               <!--Event files -->
+               <div class="col-md-12">
+                <label for="postPhoto" class="label">{{'Event files' |translate}}</label>
+                <div class="d-flex">
+                    <div *ngFor="let file of files;let i=index" class="uploadImg m-2">
+                        <img src="{{file.fileData | base64Image: file.extension}}" (click)="upload.click()"
+                            onerror="this.onerror=null;this.src='assets/images/placeholder.png';" alt="">
+                        <i (click)="deleteAttachment(file.id)" class="fas fa-trash"></i>
+                    </div>
+                    <div class="uploadImg">
+                        <img src="assets/images/placeholder.png" (click)="upload.click()"
+                            onerror="this.onerror=null;this.src='assets/images/placeholder.png';" alt="">
+                        <i (click)="upload.click()" class="fas fa-camera"></i>
+                        <input nbInput type="file" multiple #upload (change)="onSelectFile($event)" />
+                    </div>
+                </div>
+            </div>
+            </div>
+                <div class="row mt-2">
+                    <button class="offset-md-11" [disabled]="eventForm.invalid||isSubmitted" type="submit" status="primary"
+                        nbButton>{{'Save' |translate}}</button>
+                </div>
+        </form>
+    </nb-card-body>
+</nb-card>

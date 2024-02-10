@@ -1,0 +1,223 @@
+<div class="chatsContainer">
+    <div  *ngIf="rooms.length>0" class="listChats">
+         <div class="chatHeader">
+             <h3>
+                {{'Users chats' |translate}}
+             </h3>
+             <div class="actionsArea">
+                 
+                 <div class="singleAction">
+                    <i class="fa fa-search" aria-hidden="true"></i>
+                 </div>
+             </div>
+         </div>
+         <div class="listLastMassages" (scroll)="onScroll($event)">
+             <div *ngFor="let room of rooms;let i=index" class="lastMessage" (click)="getroomMessages(room)">
+                <div class="imgArea">
+                    <img src="{{room.groupImage?room.groupImage:defaultImg}}"  onerror="this.onerror=null;this.src=defaultImg;" alt="">
+                 <img src="{{room.lastGroupMessage?(room.lastGroupMessage.senderProfileImage?room.lastGroupMessage.senderProfileImage:defaultImg):defaultImg}}"  onerror="this.onerror=null;this.src=defaultImg;" class="positionedImg" alt="">
+                </div> 
+                
+                 <div class="textualMessage">
+                     <h4>
+                         {{room.chatGroupName}}
+                     </h4>
+                     <p>
+                        {{room.lastGroupMessage?.message}}
+                     </p>
+                 </div>
+                 <div class="lastMessageControls">
+                    <div class="moreAction">
+                        <i class="fa fa-ellipsis-h" (click)="showAction($event,'r',room.chatGroupId)" aria-hidden="true"></i>
+                        <div *ngIf="showMessageEvent=='r'+room.chatGroupId" class="allEvents">
+                          <div class="singleEvent" (click)="makeAction('r',room.chatGroupId,'delete')">
+                              {{'Delete' |translate}}
+                          </div>
+                          <div class="singleEvent" (click)="makeAction('r',room.chatGroupId,'ban');viewDialog(dialog)">
+                             {{'Ban' |translate}}
+                         </div>
+                        </div>
+                    </div>
+                    <p *ngIf="room.lastGroupMessage" class="time">
+                        {{room.lastGroupMessage.messageDate |slice :0:10}}
+                    </p>
+                 </div>
+             </div>
+          
+         </div>
+    </div>
+    <ng-container *ngIf="currentRoom !=null">
+            <div class="previewSingleChat">
+                <div class="chatHeader">
+                    <div class="imgArea">
+                        <img src="{{selectedRoom.groupImage?selectedRoom.groupImage:defaultImg}}"  onerror="this.onerror=null;this.src=defaultImg;" alt="">
+                        <img src="{{selectedRoom.lastGroupMessage?(selectedRoom.lastGroupMessage.senderProfileImage?selectedRoom.lastGroupMessage.senderProfileImage:defaultImg):defaultImg}}"  onerror="this.onerror=null;this.src=defaultImg;" class="positionedImg" alt="">
+                        </div>
+                    <h3>
+                        {{selectedRoom.chatGroupName}}
+                    </h3>
+                </div>
+                <div class="listMessages">
+                    <div *ngFor="let message of messages" class="userMessage" [ngClass]="{'singleMessage':message.senderId==userId}">
+                        <img src="{{message.senderProfileImage?message.senderProfileImage:defaultImg}}" alt="">
+                        <div class="messageArea">
+                            <p class="userName">
+                                {{message.senderName}}
+                            </p>
+                            <div class="messageControler">
+                                <div *ngIf="message.senderId != userId" class="moreAction">
+                                    <i class="fa fa-ellipsis-h" (click)="showAction($event,'m',message.chatMessageId)" aria-hidden="true"></i>
+                                <div *ngIf="showMessageEvent=='m'+message.chatMessageId" class="allEvents">
+                                    <div class="singleEvent" (click)="makeAction('m',message.chatMessageId,'delete')">
+                                        {{'Delete' |translate}}
+                                    </div>
+                                    <div class="singleEvent"  (click)="makeAction('m',message.chatMessageId,'reply')">
+                                        {{'Reply' |translate}}
+                                    </div>
+                                </div>
+                                    
+                                </div>
+                                <p>
+                                    {{message.message}}
+                                </p>
+                                <p class="time">
+                                    {{message.messageDate |slice :0:11}}
+                                </p>
+                            </div>
+                        </div>
+                       
+                    </div>
+                 
+                </div>
+                <!-- <div class="replyArea">
+                    <div *ngIf="showAttachArea" class="attachmentsArea">
+                       <div class="singleIcon">
+                        <i class="fa fa-microphone" aria-hidden="true"></i>
+                       </div>
+                       <div class="singleIcon">
+                        <i class="fa fa-camera" aria-hidden="true"></i>
+                       </div>
+                       <div class="singleIcon">
+                        <i class="fa fa-upload" aria-hidden="true"></i>
+                       </div>
+                    </div>
+                    <div class="attach" (click)="showAttachArea?showAttachArea=false:showAttachArea=true">
+                        <i class="fa fa-paperclip" aria-hidden="true"></i>
+                    </div>
+                    <div class="textArea">
+                        <div class="form-group">
+                            <textarea class="form-control" placeholder="Write something" rows="3" [(ngModel)]="message"></textarea>
+                        </div>
+                    </div>
+                    <div class="sendIcon" (click)="sendMessage()">
+                        <i class="fa fa-paper-plane" aria-hidden="true"></i>
+                    </div>
+                </div> -->
+                </div>
+                <div class="previewChatData">
+                    <div class="previewHeader">
+                        <div class="imgArea">
+                            <img src="{{selectedRoom.groupImage?selectedRoom.groupImage:defaultImg}}"  onerror="this.onerror=null;this.src=defaultImg;" alt="">
+                            <img src="{{selectedRoom.lastGroupMessage?(selectedRoom.lastGroupMessage.senderProfileImage?selectedRoom.lastGroupMessage.senderProfileImage:defaultImg):defaultImg}}"  onerror="this.onerror=null;this.src=defaultImg;" class="positionedImg" alt="">
+                        </div> 
+                        <h3>
+                            {{selectedRoom.chatGroupName}}
+                        </h3>
+                    </div>
+                    <div class="membersArea">
+                        <div class="headerMem" (click)="showMembers?showMembers=false:showMembers=true">
+                            <h3>
+                                {{'Chat Members' |translate}}
+                            </h3>
+                            <div class="chevronIcon">
+                                <i *ngIf="!showMembers" class="fa fa-angle-down" aria-hidden="true"></i>
+                                <i *ngIf="showMembers"  class="fa fa-angle-up" aria-hidden="true"></i>
+                            </div>
+                            
+                        </div>
+                        <div *ngIf="showMembers" class="membersList">
+                            <div *ngFor="let member of members" class="singleMember">
+                                <img src="{{member.profileImage?member.profileImage:defaultImg}}" alt="">
+                                <div class="textualUser">
+                                    <h3>
+                                        {{member.userName}}
+                                    </h3>
+                                    <p>
+                                        {{member.fullName}}
+                                    </p>
+                                </div>
+                            </div>
+                           
+                        </div>
+                    </div>
+                    <div class="previewActions">
+                        <div class="singleAction" (click)="delete(currentRoom,selectedRoom.chatGroupName)">
+                            <i class="fa fa-trash" aria-hidden="true"></i>
+                            <p>
+                                {{'Delete conversation' |translate}}
+                            </p>
+                        </div>
+                        <div (click)="viewDialog(dialog)" class="singleAction">
+                            <i class="fa fa-ban" aria-hidden="true"></i>
+                            <p>
+                                {{'Ban' |translate}}
+                            </p>
+                        </div>
+                    </div>
+                
+
+                </div>
+    </ng-container>
+    <div *ngIf="currentRoom ==null && rooms.length>0" class="noRoomChoosen">
+         <p>
+             {{'Choose Room To Start Chat' |translate}} 
+         </p>
+    </div>
+    <div *ngIf="rooms.length==0" class="noRoomChoosen fullWidth">
+        <p>
+            {{'There Are No Chats Yet' |translate}}
+        </p>
+   </div>
+    
+</div>
+
+
+
+<ng-template #dialog let-data let-ref="dialogRef">
+    <nb-card>
+      <nb-card-header>Deactivate User</nb-card-header>
+      <nb-card-body>
+        
+        <div class="assignForm">
+          <div>
+            <div class="form-group">
+            <label for="blockPeriod" class="label">Period</label>
+            <input
+            [(ngModel)]="blockPeriod"
+            nbInput
+            type="number"
+            id="InputValue"
+            placeholder="Block period" />
+    
+        </div>
+        <div class="form-group">
+            <label for="userBlockLawId" class="label">Block Laws</label>
+            <nb-select
+            [(ngModel)]="userBlockLawId" fullWidth>
+                <nb-option *ngFor="let law of laws" [value]='law.userBlockLawId'>
+                    {{lang=='ar'?law.messageAr:law.messageEng}}</nb-option>
+            </nb-select>
+        </div>
+      
+          </div>
+         
+        </div>
+        
+      </nb-card-body>
+      <nb-card-footer>
+        <button class="submitBtn"  [disabled]="!userBlockLawId" nbButton type="button" (click)="deacivate(ref)" status="primary"
+        nbButton>Deactivate</button>
+        <button nbButton id="closePass" (click)="ref.close()">Close</button>
+      </nb-card-footer>
+    </nb-card>
+</ng-template>

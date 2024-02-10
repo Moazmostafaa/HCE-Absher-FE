@@ -1,0 +1,32 @@
+<div class="singlePage">
+    <div class="headerWithControls d-flex">
+        <h3>{{'Chats' |translate}}</h3>
+        <div class="chatTabs">
+            <nb-card>
+                <div class="tabsList">
+                    <!-- <div routerLink="/pages/chat/myChats" routerLinkActive="activeRouteTab" class="singleTab">
+                        {{'My chats' |translate}}
+                    </div> -->
+                    <div routerLink="/pages/chat/usersChats" routerLinkActive="activeRouteTab" class="singleTab">
+                        {{'Users chats' |translate}}
+                    </div>
+                    <div routerLink="/pages/chat/groupsChats" routerLinkActive="activeRouteTab" class="singleTab">
+                        {{'Groups chats' |translate}}
+                    </div>
+                </div>
+            </nb-card>
+        </div>
+    </div>
+    <nb-card>
+   <div class="chatArea">
+    <router-outlet></router-outlet>
+   </div>
+   </nb-card>
+   
+</div>
+
+
+
+
+
+

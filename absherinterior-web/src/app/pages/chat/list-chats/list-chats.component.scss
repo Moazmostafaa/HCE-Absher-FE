@@ -1,0 +1,49 @@
+table {
+    width: 100%;
+  }
+  nb-card {
+    width: 100%;
+  }
+  
+  .headerWithControls{
+    justify-content: space-between;
+    button{
+      max-width: fit-content;
+      position: relative;
+      top: -11px;
+    }
+  }
+
+  .headerWithControls{
+    justify-content: initial;
+    margin-bottom: -20px;
+    .chatTabs {
+      margin: 0 15px;
+      position: relative;
+      top: -15px;
+      .tabsList {
+        display: flex;
+        .singleTab {
+          padding: 10px 15px;
+          color: gray;
+          cursor: pointer;
+          &:hover{
+            color: black;
+            font-weight: 600;
+          }
+      }
+      .activeRouteTab{
+        color: black;
+        font-weight: 600;
+        border-bottom: 3px solid #d1ab40;
+      }
+    }
+  }
+  }
+
+  .chatArea {
+    margin: 20px;
+    border: 1px solid #cbcbcb;
+    border-radius: 15px;
+    min-height: 400px;
+}

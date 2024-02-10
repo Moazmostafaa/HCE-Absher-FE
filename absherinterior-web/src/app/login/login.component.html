@@ -1,0 +1,81 @@
+<div class="logo-container">
+  <a class="logo" dir="ltr">
+    <img src="./assets/images/vision.png" class="m-1" width="45%"/>
+    <img src="./assets/images/logo2.png"  class="m-1" width="45%"/>
+  </a>
+</div>
+
+<h1 id="title" class="title">{{'Sign In' |translate}}</h1>
+
+<nb-alert *ngIf="showMessages.error && errors?.length && !submitted" outline="danger" role="alert">
+  <p class="alert-title"><b>Oh snap!</b></p>
+  <ul class="alert-message-list">
+    <li *ngFor="let error of errors" class="alert-message">{{ error }}</li>
+  </ul>
+</nb-alert>
+
+<nb-alert *ngIf="showMessages.success && messages?.length && !submitted" outline="success" role="alert">
+  <ul class="alert-message-list">
+    <li *ngFor="let message of messages" class="alert-message">{{ message }}</li>
+  </ul>
+</nb-alert>
+
+<form (ngSubmit)="login()" #form="ngForm" aria-labelledby="title">
+
+  <div class="form-control-group">
+    <label class="label" for="input-userName">{{'Username' |translate}} /  {{'NationalId' |translate}}  : </label>
+    <input nbInput
+           fullWidth
+           [(ngModel)]="user.userName"
+           #userName="ngModel"
+           name="userName"
+           id="input-userName"
+           placeholder="{{'Username' |translate}}"
+           autofocus
+           [required]="getConfigValue('forms.validation.email.required')"
+           [attr.aria-invalid]="userName.invalid && userName.touched ? true : null">
+    <ng-container *ngIf="userName.invalid && userName.touched">
+      <p class="caption status-danger" *ngIf="userName.errors?.required">
+        {{'userName is required' |translate}} !
+      </p>
+    </ng-container>
+  </div>
+
+  <div class="form-control-group">
+    <label class="label" for="input-password">{{'Password' |translate}} :</label>
+    <input nbInput
+           fullWidth
+           [(ngModel)]="user.password"
+           #password="ngModel"
+           name="password"
+           type="password"
+           id="input-password"
+           placeholder="{{'Password' |translate}}"
+           [required]="getConfigValue('forms.validation.password.required')"
+           [minlength]="getConfigValue('forms.validation.password.minLength')"
+           [maxlength]="getConfigValue('forms.validation.password.maxLength')"
+           [attr.aria-invalid]="password.invalid && password.touched ? true : null">
+    <ng-container *ngIf="password.invalid && password.touched ">
+      <p class="caption status-danger" *ngIf="password.errors?.required">
+        {{'Password is required' |translate}} !
+      </p>
+      <p class="caption status-danger" *ngIf="(password.errors?.minlength || password.errors?.maxlength)">
+        {{'Password should contains' |translate}}
+        {{'from' |translate}} {{ getConfigValue('forms.validation.password.minLength') }}
+        {{'to' |translate}} {{ getConfigValue('forms.validation.password.maxLength') }}
+        {{'characters' |translate}}
+      </p>
+    </ng-container>
+  </div>
+
+  <div class="form-control-group accept-group">
+    <a class="forgot-password" routerLink="/request-password">{{'Forgot Password?' |translate}}</a>
+  </div>
+
+  <button nbButton
+          fullWidth
+          status="success"
+          [class.btn-pulse]="submitted">
+    {{'Sign In' |translate}}
+  </button>
+</form>

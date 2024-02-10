@@ -1,0 +1,10 @@
+<nb-card size="tiny">
+  <nb-card-header dir="auto">{{ title }}</nb-card-header>
+  <nb-card-body  dir="auto" class="p-3">
+    {{body}}
+  </nb-card-body>
+  <nb-card-footer class="d-flex justify-content-between">
+    <button nbButton [status]="confirmStatus"  (click)="confirm()">{{buttonText || "Delete" | translate}}</button>
+    <button nbButton [status]="closeStatus" (click)="dismiss()">{{"Close" | translate}}</button>
+  </nb-card-footer>
+</nb-card>

@@ -1,0 +1,80 @@
+<nb-card>
+    <nb-card-header>{{'Add document' |translate}}</nb-card-header>
+    <nb-card-body>
+        <form  [formGroup]="documentForm" (ngSubmit)="onSubmit()">
+            <div class="row">
+                <div class="col-sm-6"> <!--name -->
+                    <div class="form-group">
+                        <label for="name" class="label">{{'Document name' |translate}}</label>
+                        <input [status]="fc.name.touched && fc.name.errors? 'danger': 'basic'" type="text"
+                            formControlName="name" nbInput shape="round" fullWidth id="name">
+                        <mat-error
+                            *ngIf="fc.name.touched && fc.name.hasError('minlength') && !fc.name.hasError('required')">
+                            {{'min length 3 Letters' | translate}}
+                        </mat-error>
+                        <mat-error *ngIf="fc.name.touched && fc.name.hasError('required')">
+                        
+                        {{'Document name is Required' | translate}}
+                        </mat-error>
+                        <div *ngIf="fc.name.touched && fc.name.errors?.noWhiteSpace">{{'White and empty spaces are not allowed' | translate}}</div>
+
+                    </div>
+                </div>
+                <div class="col-sm-6"> <!--description -->
+                    <div class="form-group">
+                        <label for="name" class="label">{{'Description' |translate}}</label>
+                        <textarea [status]="fc.description.touched && fc.description.errors? 'danger': 'basic'" type="text"
+                            formControlName="description" nbInput shape="round" fullWidth id="description"></textarea>
+                        <mat-error
+                            *ngIf="fc.description.touched && fc.description.hasError('minlength') && !fc.description.hasError('required')">
+                            {{'min length 3 Letters' | translate}}
+                        </mat-error>
+                        <mat-error *ngIf="fc.description.touched && fc.description.hasError('required')">
+                        
+                        {{'Document description is Required' | translate}}
+                        </mat-error>
+                        <div *ngIf="fc.description.touched && fc.description.errors?.noWhiteSpace">{{'White and empty spaces are not allowed' | translate}}</div>
+
+                    </div>
+                </div>
+                <div class="col-md-6"><!--Event category -->
+                    <div class="form-group">
+                        <label for="category" class="label">{{'Event category' |translate}}</label>
+                        <nb-select placeholder="{{'Choose a category' |translate}}" formControlName="categoryId" id="eventCategoryId" shape="round" fullWidth>
+                            <nb-option *ngFor="let category of categories" [value]="category.categoryId">
+                                {{category.name}}</nb-option>
+                        </nb-select>
+                    </div>
+                </div>
+                <div class="col-sm-6"> <!--link -->
+                    <div class="form-group">
+                        <label for="name" class="label">{{'Link' |translate}}</label>
+                        <input [status]="fc.link.touched && fc.link.errors? 'danger': 'basic'" type="text"
+                            formControlName="link" nbInput shape="round" fullWidth id="link">
+                        <mat-error
+                            *ngIf="fc.link.touched && fc.link.hasError('minlength') && !fc.link.hasError('required')">
+                            {{'min length 3 Letters' | translate}}
+                        </mat-error>
+                    </div>
+                </div>
+                <!--Event Image -->
+                <div class="col-sm-6">
+                    <label for="profileImage" class="label">{{'File' |translate}}</label>
+                    <div class="uploadImg" (click)="upload.click()">
+                        <img src="{{attachment | base64Image: attachmentExtension}}"
+                            onerror="this.onerror=null;this.src='./assets/images/placeholder.png';" alt="">
+                        <i class="fas fa-camera"></i>
+                        <input nbInput type="file" #upload (change)="onSelectFile($event)" />
+                    </div>
+                    <p *ngIf="fc.attachmentId.touched && fc.attachmentId.errors" class="text-danger">Please select a
+                        valid file</p>
+                </div>
+            </div>
+            <div class="row mt-2">
+                <button class="floatingBtn" [disabled]="documentForm.invalid||isSubmitted" type="submit" status="primary"
+                    nbButton>{{'Save' |translate}}</button>
+            </div>
+
+        </form>
+    </nb-card-body>
+</nb-card>

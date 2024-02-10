@@ -1,0 +1,16 @@
+export enum StatisticsEnum {
+    TotalUsers,
+    TotalActiveUsers,
+    TotalInactiveUsers,
+    TotalPosts,
+    TotalEvents,
+    TotalChats,
+    TotalKnowledgeCenterDocuments,
+    AttendedEvents,
+    CommentedPosts,
+    LikedKnowledgeCenterDocuments,
+    LikedPosts,
+    PostOwners,
+    SharedKnowledgeCenterDocuments,
+    SharedPosts,
+}

@@ -1,0 +1,138 @@
+<nb-card>
+    <nb-card-header>{{'Update user' |translate}}</nb-card-header>
+    <nb-card-body>
+        <nb-alert status="warning" *ngIf="isCurrentUser">
+            {{'UpdateProfileWarning' |translate}}
+        </nb-alert>
+        <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+            <div class="row">
+                <!--full name -->
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label for="fullName" class="label">{{'Full name' |translate}}</label>
+                        <input [status]="fc.fullName.touched && fc.fullName.errors? 'danger': 'basic'" type="text"
+                            formControlName="fullName" nbInput shape="round" fullWidth id="fullName"
+                            placeholder="Ex: John">
+                        <mat-error
+                            *ngIf="fc.fullName.touched && fc.fullName.hasError('minlength') && !fc.fullName.hasError('required')">
+                            {{'min length 3 Letters' | translate}}
+                        </mat-error>
+                        <mat-error *ngIf="fc.fullName.touched && fc.fullName.hasError('required')">
+                            {{'Full name is Required' | translate}}
+                        </mat-error>
+                        <div *ngIf="fc.fullName.touched && fc.fullName.errors?.noWhiteSpace">{{'White and empty spaces are not allowed' | translate}}</div>
+
+                    </div>
+                </div>
+                <!--Phone -->
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label for="phoneNumber" class="label">{{'Phone' |translate}}</label>
+                        <input type="text" inputmode="numeric" pattern="[-+]?[0-9]*[.,]?[0-9]+" formControlName="phoneNumber" id="phoneNumber" nbInput
+                            [status]="fc.phoneNumber.touched && fc.phoneNumber.errors? 'danger': 'basic'" shape="round"
+                            fullWidth placeholder="201112345678">
+                        <mat-error
+                            *ngIf="fc.phoneNumber.touched && fc.phoneNumber.hasError('maxLength') && !fc.phoneNumber.hasError('required')">
+                            {{'Max length for phone number is 10 characters' | translate}}
+                        </mat-error>
+                        <mat-error *ngIf="fc.phoneNumber.touched && fc.phoneNumber.hasError('required')">
+                            {{'Phone Number is Required' | translate}}
+                        </mat-error>
+                        <div *ngIf="fc.phoneNumber.touched && fc.phoneNumber.errors?.noWhiteSpace">{{'White and empty spaces are not allowed' | translate}}</div>
+
+                    </div>
+                </div>
+                <!--Email -->
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label for="email" class="label">{{'Email' |translate}}</label>
+                        <input [status]="fc.email.touched && fc.email.errors? 'danger': 'basic'" type="email"
+                            formControlName="email" nbInput shape="round" fullWidth id="email"
+                            placeholder="Ex: John.Doe@absher.com">
+                        <mat-error
+                            *ngIf="fc.email.touched && fc.email.hasError('email') && !fc.email.hasError('required')">
+                            {{'Please enter a valid email address' | translate}}
+                        </mat-error>
+                        <mat-error *ngIf="fc.email.touched && fc.email.hasError('required')">
+                            {{'Email is Required' | translate}}
+                        </mat-error>
+                        <div *ngIf="fc.email.touched && fc.email.errors?.noWhiteSpace">{{'White and empty spaces are not allowed' | translate}}</div>
+
+                    </div>
+                </div>
+                <!--National Id -->
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label for="nationalId" class="label">{{'National Id' |translate}}</label>
+                        <input [status]="fc.nationalId.touched && fc.nationalId.errors? 'danger': 'basic'" type="text"
+                            formControlName="nationalId" nbInput shape="round" fullWidth id="nationalId"
+                            placeholder="Ex: 2990101000000001">
+                        <mat-error
+                            *ngIf="fc.nationalId.touched && fc.nationalId.hasError('pattern') && !fc.nationalId.hasError('required')">
+                            {{'National Id is not valid' | translate}}
+                        </mat-error>
+                        <mat-error *ngIf="fc.nationalId.touched && fc.nationalId.hasError('required')">
+                            {{'National Id is Required' | translate}}
+                        </mat-error>
+                    </div>
+                </div>
+                <!--Role -->
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label for="roleId" class="label">{{'Role' |translate}}</label>
+                        <nb-select [status]="fc.roleId.touched && fc.roleId.errors? 'danger': 'basic'" multiple
+                            formControlName="roleId" id="roleId" shape="round" fullWidth>
+                            <nb-option *ngFor="let role of rolesList" [value]='role.roleId'>
+                                {{role.roleName}}</nb-option>
+                            <mat-error *ngIf="fc.roleId.touched && fc.roleId.hasError('required')">
+                                {{'Role is Required' | translate}}
+                            </mat-error>
+                        </nb-select>
+                    </div>
+                </div>
+                <!--Gender -->
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label for="gender" class="label">{{'Gender' |translate}}</label>
+                        <nb-radio-group class="row" [status]="fc.gender.touched && fc.gender.errors? 'danger': 'basic'"
+                            type="text" formControlName="gender">
+                            <nb-radio class="ml-3" [value]="1">{{'Male' |translate}}</nb-radio>
+                            <nb-radio [value]="2">{{'Female' |translate}}</nb-radio>
+                        </nb-radio-group>
+                        <mat-error *ngIf="fc.gender.touched && fc.gender.hasError('required')">
+                            {{'Gender is Required' | translate}}
+                        </mat-error>
+                    </div>
+                </div>
+                <!--Profile Image -->
+                <div class="col-sm-6">
+                    <label for="profileImage" class="label">{{'Profile image' |translate}}</label>
+                    <div class="uploadImg" (click)="upload.click()">
+                        <img src="{{profileAttachment | base64Image: profileExtension}}"
+                            onerror="this.onerror=null;this.src='./assets/images/placeholder.png';" alt="">
+                        <i class="fas fa-camera"></i>
+                        <input nbInput accept="image/*" type="file" #upload (change)="onSelectProfileImage($event)" />
+                    </div>
+                    <p *ngIf="fc.profileImage.touched && fc.profileImage.errors" class="text-danger">Please select a
+                        valid
+                        image</p>
+                </div>
+                <!--Identification Image -->
+                <div class="col-sm-6">
+                    <label for="identificationImage" class="label">{{'Identification image' |translate}}</label>
+                    <div class="uploadImg" (click)="upload2.click()">
+                        <img src="{{identificationAttachment | base64Image: identificationExtension}}"
+                            onerror="this.onerror=null;this.src='./assets/images/placeholder.png';" alt="">
+                        <i class="fas fa-camera"></i>
+                        <input nbInput accept="image/*" type="file" #upload2 (change)="onSelectIdImage($event)" />
+                    </div>
+                    <p *ngIf="fc.identificationImage.touched && fc.identificationImage.errors" class="text-danger">
+                        {{'Please select a valid' | translate}}
+                        image</p>
+                </div>
+            </div>
+            <button class="floatingBtn" [disabled]="userForm.invalid || isSubmitted" type="submit" status="primary" nbButton>{{'Save' |translate}}</button>
+
+        </form>
+    </nb-card-body>
+</nb-card>

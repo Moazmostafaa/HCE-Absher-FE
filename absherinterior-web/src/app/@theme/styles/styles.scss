@@ -1,0 +1,321 @@
+@import url("https://fonts.googleapis.com/css?family=Open+Sans:400,600,700&display=swap");
+
+// themes - our custom or/and out of the box themes
+@import "themes";
+
+// framework component themes (styles tied to theme variables)
+@import "~@nebular/theme/styles/globals";
+@import "~@nebular/auth/styles/globals";
+
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/variables";
+@import "~bootstrap/scss/mixins";
+@import "~bootstrap/scss/grid";
+
+// loading progress bar theme
+@import "./pace.theme";
+
+@import "./layout";
+@import "./overrides";
+
+// install the framework and custom global styles
+@include nb-install() {
+  // framework global styles
+  @include nb-theme-global();
+  @include nb-auth-global();
+
+  @include ngx-layout();
+  // loading progress bar
+  @include ngx-pace-theme();
+
+  @include nb-overrides();
+}
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+/*start color applay*/
+.nb-theme-default nb-menu .menu-item a.active {
+  color: #cfa736;
+}
+.nb-theme-default nb-menu .menu-item a.active .menu-icon {
+  color: #cfa736;
+}
+.nb-theme-default nb-menu .menu-item a {
+  color: #222b45;
+}
+.nb-theme-default nb-menu .menu-item a:hover {
+  background-color: transparent;
+  color: #cfa736;
+  cursor: pointer;
+}
+.nb-theme-default nb-menu .menu-item a:hover .menu-icon {
+  color: #cfa736;
+}
+.nb-theme-default nb-sidebar.compacted nb-menu .menu-item a.active::before {
+  background: #cfa736;
+}
+.nb-theme-default [nbButton].appearance-filled.status-primary,
+.nb-theme-default .appearance-filled.status-primary[nbButtonToggle] {
+  background-color: #0e9346 !important;
+  border-color: #0e9346 !important;
+}
+.nb-theme-default [nbButton].appearance-filled.status-primary:hover,
+.nb-theme-default .appearance-filled.status-primary:hover[nbButtonToggle] {
+  background-color: #cfa736 !important;
+  border-color: #cfa736 !important;
+}
+.mat-flat-button.mat-primary,
+.mat-raised-button.mat-primary,
+.mat-fab.mat-primary,
+.mat-mini-fab.mat-primary {
+  background-color: #0e9346 !important;
+}
+.mat-flat-button.mat-warn,
+.mat-raised-button.mat-warn,
+.mat-fab.mat-warn,
+.mat-mini-fab.mat-warn {
+  background-color: #cfa736 !important;
+}
+.nb-theme-default nb-option.selected {
+  background-color: #0e9346 !important;
+  color: white !important;
+}
+.nb-theme-default nb-option:hover.selected {
+  background-color: #cfa736 !important;
+}
+.nb-theme-default .pace .pace-progress {
+  background: #0c4926 !important;
+}
+.mat-calendar-body-selected {
+  background-color: #0c4926;
+  color: #fff;
+}
+
+.filterArea {
+  background-color: white;
+  padding: 10px;
+  margin: 15px 0;
+  // box-shadow: 0 3px 6px 0 hsl(0deg 0% 44% / 16%);
+  h3.headerTitle {
+    font-size: 20px;
+    border-bottom: 1px solid #e7e7e7;
+    color: #52596d;
+    font-weight: 600;
+  }
+}
+.nb-theme-default nb-card-body {
+  padding: 0;
+}
+// .nb-theme-default nb-card{
+//   border: 0 !important;
+// }
+.nb-theme-default
+  nb-toggle.status-basic
+  .native-input:enabled:focus
+  + .toggle.checked,
+.nb-theme-default nb-toggle.status-basic .toggle.checked {
+  background-color: #0e9346;
+  border-color: #0e9346;
+  box-shadow: none;
+}
+.nb-theme-default nb-toggle.status-basic .toggle-switcher nb-icon {
+  color: #0e9346;
+}
+.nb-theme-default
+  nb-toggle.status-basic
+  .native-input:enabled
+  + .toggle:hover.checked {
+  background-color: #0e9346;
+  border-color: #0e9346;
+}
+.nb-theme-default nb-toggle.status-basic .native-input:enabled + .toggle:hover {
+  border-color: #0e9346;
+}
+nb-card {
+  width: 100%;
+  position: relative;
+  top: 17px;
+}
+.nb-theme-default nb-toggle.status-basic .toggle.checked {
+  background-color: #0e9346;
+  border-color: #0e9346;
+}
+nb-card-body {
+  padding: 15px !important;
+  padding-top: 0 !important;
+}
+.autoCompleteInput {
+  input {
+    width: 100% !important;
+    display: block;
+    max-width: 100% !important;
+    border-radius: 25px !important;
+    height: 40px;
+  }
+}
+/*end color applay*/
+[lang="en"] body {
+  direction: ltr;
+  text-align: left;
+  p,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  span,
+  div,
+  input,
+  select {
+    text-align: left;
+  }
+  .noRoomChoosen {
+    border-left: 1px solid #bdbdbd;
+  }
+  .allEvents {
+    position: absolute;
+    right: 0;
+  }
+  .messageControler {
+    .moreAction {
+      position: absolute;
+      right: 10px;
+    }
+  }
+  .listMessages {
+    .singleMessage {
+      direction: rtl;
+      position: relative;
+      right: -15%;
+    }
+    .userMessage {
+      direction: ltr;
+      position: relative;
+      right: 0;
+    }
+  }
+  .imgArea {
+    .positionedImg {
+      left: -30px;
+    }
+  }
+  button.p_btn {
+    border: 0 !important;
+    background-color: transparent !important;
+    position: absolute;
+    right: 20px;
+  }
+  button.floatingBtn {
+    float: right;
+  }
+}
+
+[lang="ar"] body {
+  direction: rtl;
+  text-align: right;
+  p,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  span,
+  div,
+  input,
+  select {
+    text-align: right;
+  }
+  .menu-item a .menu-title {
+    margin: 0 5px;
+  }
+  .noRoomChoosen {
+    border-right: 1px solid #bdbdbd;
+  }
+  .allEvents {
+    position: absolute;
+    left: 0;
+  }
+  .messageControler {
+    .moreAction {
+      position: absolute;
+      left: 10px;
+    }
+  }
+  .imgArea {
+    .positionedImg {
+      right: -30px;
+    }
+  }
+  .listMessages {
+    .singleMessage {
+      direction: ltr;
+      position: relative;
+      left: -15%;
+    }
+    .userMessage {
+      direction: rtl;
+      position: relative;
+      left: 0;
+    }
+  }
+  button.p_btn {
+    border: 0 !important;
+    background-color: transparent !important;
+    position: absolute;
+    left: 20px;
+  }
+  button.floatingBtn {
+    float: left;
+  }
+}
+th,
+th.mat-header-cell,
+td.mat-cell,
+td.mat-footer-cell {
+  text-align: center !important;
+}
+
+
+
+[dir=ltr] .nb-theme-default nb-toggle .toggle:not(.checked) .toggle-switcher {
+  right: inherit;
+}
+[lang="ar"] {
+  .nb-theme-default nb-select.appearance-outline.size-medium
+  { .select-button {
+    padding-left: 34px!important;
+    padding-right: 16px!important;
+    text-align: right;
+    nb-icon {
+      right: auto!important;
+      left: 10px;
+  }
+  }
+}
+nb-option,.nb-transition {
+  flex-direction: row-reverse;
+
+}
+.info-container {
+  margin-right: 0.5rem;
+
+}
+}
+
+nb-window:not(.full-screen).maximized {
+  .window-img {
+    max-width: 25vw;
+    max-height: 25vh;
+
+  }
+}
+

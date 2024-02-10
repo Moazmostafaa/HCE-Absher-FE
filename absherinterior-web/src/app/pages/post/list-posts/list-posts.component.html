@@ -1,0 +1,184 @@
+<div class="singlePage">
+  <div class="headerWithControls d-flex">
+    <h3>{{ "Posts" | translate }}</h3>
+    <button
+      nbButton
+      status="primary"
+      [routerLink]="['/pages/post/add']"
+      class="col align-self-end"
+    >
+      {{ "Add" | translate }}
+    </button>
+  </div>
+
+  <table mat-table [dataSource]="posts" class="mat-elevation-z8">
+    <!--- Note that these columns can be defined in any order.
+            The actual rendered columns are set as a property on the row definition" -->
+    <!-- owner Column -->
+    <ng-container matColumnDef="owner">
+      <th mat-header-cell *matHeaderCellDef>{{ "Owner" | translate }}</th>
+      <td mat-cell *matCellDef="let element">
+        {{ element.userInfo ? element.userInfo.fullName : "-" }}
+      </td>
+    </ng-container>
+
+    <!-- title Column -->
+    <ng-container matColumnDef="title">
+      <th mat-header-cell *matHeaderCellDef>{{ "Post text" | translate }}</th>
+      <td mat-cell *matCellDef="let element">
+        <p *ngIf="element.postType == 4 && !element.sharePostId">
+          {{ element.poll?.question }}
+        </p>
+        <p *ngIf="!(element.postType == 4 && !element.sharePostId)">
+          {{ element.postText | slice: 0:49 }}
+        </p>
+      </td>
+    </ng-container>
+
+    <!-- title Column -->
+    <ng-container matColumnDef="type">
+      <th mat-header-cell *matHeaderCellDef>{{ "Post Type" | translate }}</th>
+      <td mat-cell *matCellDef="let element">
+        {{ getPostType(element.postType) | translate }}
+      </td>
+    </ng-container>
+
+    <!-- is document Column -->
+    <ng-container matColumnDef="shareKnowledgeCenterId">
+      <th mat-header-cell *matHeaderCellDef>
+        {{ "is a shared Knowledge center document?" | translate }}
+      </th>
+      <td mat-cell *matCellDef="let element">
+        <mat-icon *ngIf="element.shareKnowledgeCenterId">check</mat-icon>
+        <mat-icon *ngIf="!element.shareKnowledgeCenterId">close</mat-icon>
+      </td>
+    </ng-container>
+
+    <!-- ishared Column -->
+    <ng-container matColumnDef="isShared">
+      <th mat-header-cell *matHeaderCellDef>
+        {{ "shared from another post ?" | translate }}
+      </th>
+      <td mat-cell *matCellDef="let element">
+        <mat-icon *ngIf="element.sharePostId">check</mat-icon>
+        <mat-icon *ngIf="!element.sharePostId">close</mat-icon>
+      </td>
+    </ng-container>
+
+    <!-- Creation Date Column -->
+    <ng-container matColumnDef="CreationDate">
+      <th mat-header-cell *matHeaderCellDef>
+        {{ "Creation Date" | translate }}
+      </th>
+      <td mat-cell *matCellDef="let element">
+        {{ element.creationDate  | date: "dd/MM/yyyy"}}
+      </td>
+    </ng-container>
+
+    <!-- actions Column -->
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef>{{ "Actions" | translate }}</th>
+      <td mat-cell *matCellDef="let element">
+        <button
+          mat-mini-fab
+          color="primary"
+          [routerLink]="['/pages/post/edit/', element.postId]"
+        >
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button
+          mat-mini-fab
+          color="warn"
+          class="mx-3"
+          (click)="delete(element.postId, element.postText)"
+        >
+          <mat-icon>delete</mat-icon>
+        </button>
+        <button
+          mat-mini-fab
+          color="basic"
+          [routerLink]="['/pages/post/view/', element.postId]"
+        >
+          <mat-icon>visibility</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="Activate">
+      <th mat-header-cell *matHeaderCellDef>
+        {{ "Deactivate user" | translate }}
+      </th>
+      <td mat-cell *matCellDef="let element">
+        <nb-card class="border-0">
+          <nb-card-body class=" p-0">
+            <nb-toggle
+              [(ngModel)]="element.userInfo.isActive"
+              (change)="changeStatus(element.userInfo, dialog)"
+            ></nb-toggle>
+          </nb-card-body>
+        </nb-card>
+      </td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+  <mat-paginator
+  [dir]="dir"
+    [length]="totalCount"
+    [pageIndex]="searchModel.PageNumber - 1"
+    [pageSize]="searchModel.PageSize"
+    [pageSizeOptions]="pageSizeOptions"
+    (page)="search($event)"
+    showFirstLastButtons
+  ></mat-paginator>
+</div>
+
+<ng-template #dialog let-data let-ref="dialogRef">
+  <nb-card>
+    <nb-card-header>{{ "Deactivate user" | translate }} </nb-card-header>
+    <nb-card-body>
+      <div class="assignForm">
+        <div>
+          <div class="form-group">
+            <label for="blockPeriod" class="label d-block"
+              >{{ "Period per day" | translate }}
+            </label>
+            <input
+              [(ngModel)]="blockPeriod"
+              min="1"
+              nbInput
+              type="number"
+              id="InputValue"
+              placeholder="Block period"
+            />
+          </div>
+          <div class="form-group">
+            <label for="userBlockLawId" class="label d-block">{{
+              "Block laws" | translate
+            }}</label>
+            <nb-select [(ngModel)]="userBlockLawId" fullWidth>
+              <nb-option *ngFor="let law of laws" [value]="law.userBlockLawId">
+                {{ lang == "ar" ? law.messageAr : law.messageEng }}</nb-option
+              >
+            </nb-select>
+          </div>
+        </div>
+      </div>
+    </nb-card-body>
+    <nb-card-footer class="d-flex  justify-content-between">
+      <button
+        class="submitBtn"
+        [disabled]="!userBlockLawId"
+        nbButton
+        type="button"
+        (click)="deacivate(ref)"
+        status="primary"
+        nbButton
+      >
+        {{ "Deactivate" | translate }}
+      </button>
+      <button nbButton id="closePass" (click)="ref.close()">
+        {{ "Close" | translate }}
+      </button>
+    </nb-card-footer>
+  </nb-card>
+</ng-template>

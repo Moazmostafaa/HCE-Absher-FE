@@ -1,0 +1,37 @@
+.post-files {
+  .img-wrapper {
+    .img-buttons {
+      background: #000000b0;
+      opacity: 0;
+      transition-duration: .6s;
+    }
+    &:hover {
+      .img-buttons {
+        opacity: 1;
+      }
+    }
+  }
+  img {
+    background-color: gray;
+    height: 250px;
+    object-fit: contain;
+
+  }
+  .file-wrapper {
+    .mat-icon {
+      overflow: hidden;
+    }
+    .file-icon {
+      height: 50px;
+      width:  50px;
+      display: block;
+      font-size: 50px;
+         }
+  }
+}
+.window-img {
+  max-width: 95vw;
+  max-height: 75vh;
+
+}
+

@@ -1,0 +1,62 @@
+<div class="singlePage">
+    <div class="headerWithControls d-flex">
+        <h3>{{'Category' |translate}} </h3>
+        <button nbButton status='primary' [routerLink]="['/pages/category/add']" class="col align-self-end">
+            {{'Add' |translate}}
+        </button>
+    </div>
+    <table mat-table [dataSource]="categories" class="mat-elevation-z8">
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef> {{'Category name' |translate}} </th>
+            <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+        </ng-container>
+
+        <!-- categoryType Column -->
+        <ng-container matColumnDef="categoryType">
+            <th mat-header-cell *matHeaderCellDef> {{'Category type' |translate}} </th>
+            <td mat-cell *matCellDef="let element"> {{getCategoryType(element.categoryType) |translate}} </td>
+        </ng-container>
+
+        <!-- isCategoryOwner Column -->
+        <ng-container matColumnDef="isCategoryOwner">
+            <th mat-header-cell *matHeaderCellDef> {{'Is current user owner' |translate}} </th>
+            <td mat-cell *matCellDef="let element">
+                <nb-icon *ngIf="element.isCategoryOwner" status="primary"  icon="checkmark-outline"></nb-icon>
+                <nb-icon *ngIf="!element.isCategoryOwner" status="danger"  icon="close-outline"></nb-icon>
+            </td>
+        </ng-container>
+        <!-- hasParentCategory Column -->
+        <ng-container matColumnDef="hasParentCategory">
+            <th mat-header-cell *matHeaderCellDef> {{'Has parent category' |translate}} </th>
+            <td mat-cell *matCellDef="let element">
+                <nb-icon *ngIf="element.parentCategoryId" status="primary"  icon="checkmark-outline"></nb-icon>
+                <nb-icon *ngIf="!element.parentCategoryId" status="danger"  icon="close-outline"></nb-icon>
+            </td>
+        </ng-container>
+        <!-- AssigneesUsers Column -->
+        <ng-container matColumnDef="creationDate">
+            <th mat-header-cell *matHeaderCellDef> {{'Creation Date' |translate}} </th>
+            <td mat-cell *matCellDef="let element"> {{element.creationDate | date : "dd/MM/yyyy"}} </td>
+        </ng-container>
+        <!-- actions Column -->
+        <ng-container matColumnDef="actions">
+            <th mat-header-cell *matHeaderCellDef> {{'Actions' |translate}} </th>
+            <td mat-cell *matCellDef="let element">
+                <button mat-mini-fab color="primary" [routerLink]="['/pages/category/edit/', element.categoryId]"
+                    class="mr-1">
+                    <mat-icon>edit</mat-icon>
+                </button>
+                <button mat-mini-fab color="warn" (click)="delete(element.categoryId,element.name)">
+                    <mat-icon>delete</mat-icon>
+                </button>
+            </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+    <mat-paginator  [dir]='dir' [length]="totalRecords" [pageIndex]="searchModel.PageNumber-1" [pageSize]="searchModel.PageSize"
+        [pageSizeOptions]="pageSizeOptions" (page)="search($event)" showFirstLastButtons></mat-paginator>
+</div>

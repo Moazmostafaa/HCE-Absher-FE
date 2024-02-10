@@ -1,0 +1,248 @@
+<div class="singlePage">
+  <div class="headerWithControls d-flex">
+    <h3>{{ "Events" | translate }}</h3>
+    <button
+      nbButton
+      status="primary"
+      [routerLink]="['/pages/event/add']"
+      class="col align-self-end"
+    >
+      {{ "Add" | translate }}
+    </button>
+  </div>
+  <nb-card>
+    <div class="filterArea">
+      <div class="row">
+        <div class="col-12">
+          <h3 class="headerTitle">
+            {{ "Filter" | translate }}
+          </h3>
+        </div>
+        <div class="col-md-3 col-sm-12">
+          <!--Event category -->
+          <div class="form-group">
+            <label for="category" class="label">{{
+              "Event category" | translate
+            }}</label>
+            <nb-select
+              (selectedChange)="onSearchChange()"
+              [(ngModel)]="searchModel.searchBy.categId"
+              placeholder="{{ 'Show all' | translate }}"
+              id="categoryId"
+              shape="round"
+              fullWidth
+            >
+              <nb-option [value]="null">{{ "Show all" | translate }}</nb-option>
+              <nb-option
+                *ngFor="let category of categories"
+                [value]="category.categoryId"
+              >
+                {{ category.name }}</nb-option
+              >
+            </nb-select>
+          </div>
+        </div>
+        <div class="col-md-3 col-sm-12">
+          <!--Event status -->
+          <div class="form-group">
+            <label for="eventStatus" class="label">{{
+              "Event status" | translate
+            }}</label>
+            <nb-select
+              (selectedChange)="onSearchChange()"
+              placeholder="{{ 'Show all' | translate }}"
+              [(ngModel)]="searchModel.searchBy.eventStatus"
+              id="status"
+              shape="round"
+              fullWidth
+            >
+              <nb-option [value]="null">{{ "Show all" | translate }}</nb-option>
+              <nb-option
+                *ngFor="let status of statuses; let i = index"
+                [value]="i + 1"
+              >
+                {{ status | translate }}</nb-option
+              >
+            </nb-select>
+          </div>
+        </div>
+        <div class="col-md-3 col-sm-12">
+          <!--Start date -->
+          <div class="form-group">
+            <label for="startDate" class="label">{{
+              "Start date" | translate
+            }}</label>
+            <input
+              nbInput
+              shape="round"
+              fullWidth
+              placeholder="{{ 'Start date' | translate }}"
+              [(ngModel)]="searchModel.searchBy.fromDate"
+              [nbDatepicker]="from"
+            />
+            <nb-datepicker
+              (dateChange)="fromDateChanged($event)"
+              #from
+            ></nb-datepicker>
+          </div>
+        </div>
+        <div class="col-md-3 col-sm-12">
+          <!--End date -->
+          <div class="form-group">
+            <label for="startDate" class="label">{{
+              "End date" | translate
+            }}</label>
+            <input
+              nbInput
+              shape="round"
+              fullWidth
+              placeholder="{{ 'End date' | translate }}"
+              (ngModelChange)="onSearchChange()"
+              [(ngModel)]="searchModel.searchBy.toDate"
+              [nbDatepicker]="to"
+            />
+            <nb-datepicker
+              (dateChange)="toDateChanged($event)"
+              #to
+            ></nb-datepicker>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nb-card>
+  <table mat-table [dataSource]="events" class="mat-elevation-z8">
+    <!--- Note that these columns can be defined in any order.
+        The actual rendered columns are set as a property on the row definition" -->
+    <!-- owner Column -->
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef>{{ "Event name" | translate }}</th>
+      <td mat-cell *matCellDef="let element">{{ element.eventName }}</td>
+    </ng-container>
+
+    <!-- title Column -->
+    <ng-container matColumnDef="startDate">
+      <th mat-header-cell *matHeaderCellDef>{{ "Start date" | translate }}</th>
+      <td mat-cell *matCellDef="let element">
+        {{ element.startDate | date: "dd/MM/yyyy" }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="endDate">
+      <th mat-header-cell *matHeaderCellDef>{{ "End date" | translate }}</th>
+      <td mat-cell *matCellDef="let element">
+        {{ element.endDate | date: "dd/MM/yyyy" }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="registrationStartDate">
+      <th mat-header-cell *matHeaderCellDef>
+        {{ "Registration start date" | translate }}
+      </th>
+      <td mat-cell *matCellDef="let element">
+        {{ element.regStartDate | date: "dd/MM/yyyy" }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="registrationEndDate">
+      <th mat-header-cell *matHeaderCellDef>
+        {{ "Registration end date" | translate }}
+      </th>
+      <td mat-cell *matCellDef="let element">
+        {{ element.regEndDate | date: "dd/MM/yyyy" }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="eventType">
+      <th mat-header-cell *matHeaderCellDef>{{ "Event type" | translate }}</th>
+      <td mat-cell *matCellDef="let element">
+        {{ getEventType(element.eventType) | translate }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="eventStatus">
+      <th mat-header-cell *matHeaderCellDef>
+        {{ "Event status" | translate }}
+      </th>
+      <td mat-cell *matCellDef="let element">
+        {{ getEventStatus(element.status) | translate }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="eventPrivacy">
+      <th mat-header-cell *matHeaderCellDef>
+        {{ "Event privacy" | translate }}
+      </th>
+      <td mat-cell *matCellDef="let element">
+        {{ getEventPrivacy(element.privacyType) | translate }}
+      </td>
+    </ng-container>
+
+    <!-- actions Column -->
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef>{{ "Actions" | translate }}</th>
+      <td mat-cell *matCellDef="let element">
+        <button
+          mat-mini-fab
+          color="basic"
+          class="my-3"
+          [routerLink]="['/pages/event/view/', element.eventId]"
+        >
+        <mat-icon>visibility</mat-icon>
+
+        </button>
+
+        <button
+          mat-mini-fab
+          color="primary"
+          [routerLink]="['/pages/event/edit/', element.eventId]"
+          class="mx-3"
+          *ngIf="datePipe.transform(element.startDate, 'yyyy-MM-dd') > todaysDate"
+        >
+          <mat-icon>edit</mat-icon>
+        </button>
+
+        <button
+          mat-mini-fab
+          color="primary"
+          class="mx-3"
+          disabled
+          title="حدث منتهي"
+          *ngIf="datePipe.transform(element.endDate, 'yyyy-MM-dd') < todaysDate"
+        >
+        <mat-icon>doneall</mat-icon>
+        </button>
+
+        <button
+          mat-mini-fab
+          color="primary"
+          class="mx-3"
+          disabled
+          title="حدث جاري"
+          *ngIf="datePipe.transform(element.startDate, 'yyyy-MM-dd') <= todaysDate && datePipe.transform(element.endDate, 'yyyy-MM-dd') >= todaysDate"
+        >
+        <mat-icon>alarmon</mat-icon>
+        </button>
+
+        <button
+          mat-mini-fab
+          color="warn"
+          (click)="delete(element.eventId, element.eventName)"
+        >
+          <mat-icon>delete</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+  <mat-paginator
+    [dir]="dir"
+    [length]="totalRecords"
+    [pageIndex]="searchModel.PageNumber - 1"
+    [pageSize]="searchModel.PageSize"
+    [pageSizeOptions]="pageSizeOptions"
+    (page)="search($event)"
+    showFirstLastButtons
+  ></mat-paginator>
+</div>

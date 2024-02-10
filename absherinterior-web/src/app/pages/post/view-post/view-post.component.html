@@ -1,0 +1,213 @@
+<nb-card>
+  <!-- post owner -->
+  <nb-card-header class="d-flex align-items-center">
+
+    <nb-user
+      size="large"
+      name="{{ post?.userInfo?.fullName }}"
+      [picture]="profileAttachmentId | userImage"
+      onlyPicture
+    ></nb-user>
+    <div>
+      <h6>
+        {{ post?.userInfo?.fullName }}
+      </h6>
+      <time class="text-muted">
+        {{ post?.creationDate | date: "dd/MM/yyyy" }}
+      </time>
+    </div>
+  </nb-card-header>
+  <!-- post details -->
+  <nb-card-body>
+    <div class="row mt-4">
+      <div class="col-md-6 col-12">
+        <div class="form-group h-100 d-flex flex-column pb-3 mb-0">
+          <label class="label"> {{post.poll?.question ? ("Question" | translate) : ("Post text" | translate) }}</label>
+
+          <textarea
+            readonly
+            nbInput
+            shape="round"
+            fullWidth
+            [ngModel]="post.poll?.question || post.postText"
+            class="flex-grow-1"
+          >
+          </textarea>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-12">
+        <div class="row">
+          <div class="col-sm-4">
+            <div class="form-group">
+              <label class="label">
+                {{ "Creation Date" | translate }}
+              </label>
+              <input
+                readonly
+                nbInput
+                shape="round"
+                fullWidth
+                [ngModel]="post?.creationDate | date: 'dd/MM/yyyy'"
+              />
+            </div>
+          </div>
+          <div class="col-sm-4">
+            <div class="form-group">
+              <label class="label">
+                {{ "Post Type" | translate }}
+              </label>
+              <input
+                readonly
+                nbInput
+                shape="round"
+                fullWidth
+                [ngModel]="getPostType(post?.postType) | translate"
+              />
+            </div>
+          </div>
+          <div class="col-sm-4">
+            <div class="form-group">
+              <label class="label">
+                {{ "number of likes" | translate }}
+              </label>
+              <input
+                readonly
+                nbInput
+                shape="round"
+                fullWidth
+                [ngModel]="post?.numberOfLikes"
+              />
+            </div>
+          </div>
+          <div class="col-sm-4">
+            <div class="form-group">
+              <label class="label">
+                {{ "number of comments" | translate }}
+              </label>
+              <input
+                readonly
+                nbInput
+                shape="round"
+                fullWidth
+                [ngModel]="post?.numberOfComments"
+              />
+            </div>
+          </div>
+          <div class="col-sm-4">
+            <div class="form-group">
+              <label class="label">
+                {{ "is a shared Knowledge center document?" | translate }}
+              </label>
+              <div>
+                <mat-icon
+                  *ngIf="post?.shareKnowledgeCenterId"
+                  class="text-success"
+                  >check</mat-icon
+                >
+                <mat-icon
+                  *ngIf="!post?.shareKnowledgeCenterId"
+                  class="text-danger"
+                  >close</mat-icon
+                >
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-4">
+            <div class="form-group">
+              <label class="label">
+                {{ "shared from another post ?" | translate }}
+              </label>
+              <div>
+                <mat-icon *ngIf="post?.sharePostId" class="text-success"
+                  >check</mat-icon
+                >
+                <mat-icon *ngIf="!post?.sharePostId" class="text-danger"
+                  >close</mat-icon
+                >
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-4" *ngIf="post.poll">
+            <div class="form-group">
+              <label class="label">
+                {{ "Days till vote end" | translate }}
+              </label>
+              <input
+                readonly
+                nbInput
+                shape="round"
+                fullWidth
+                [ngModel]="post?.poll?.deadLineDays"
+              />
+            </div>
+          </div>
+          <div class="col-sm-4 " *ngIf="post.poll">
+            <div class="form-group">
+              <label class="label">
+                {{ "Voters Number" | translate }}
+              </label>
+              <input
+                readonly
+                nbInput
+                shape="round"
+                fullWidth
+                [ngModel]="post?.poll?.votersNumber"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Poll adtional Data -->
+      <div class="col-6" *ngIf="post.poll">
+        <h6>{{"Answers" | translate}}</h6>
+          <div class="mb-2" *ngFor="let answer of post.poll?.answers">
+            <nb-progress-bar [value]="getVotePercent(answer.numberOfVotes)" [displayValue]="true" status="success"></nb-progress-bar>
+            <label class="label">
+              {{ answer.answer }}
+            </label>
+          </div>
+      </div>
+    </div>
+      <!-- shared knowledge center post -->
+      <div class=" p-2 mx-2  mt-4" *ngIf="!idFromShared && post?.shareKnowledgeCenterId">
+        <h6>{{ "shared Knowledge center document" | translate }}</h6>
+        <ngx-shared-knowledge-center-doc [shareKnowledgeCenterId]="post?.shareKnowledgeCenterId" *ngIf="post?.shareKnowledgeCenterId" ></ngx-shared-knowledge-center-doc>
+      </div>
+    <!-- post files -->
+    <div class="px-2 mx-2">
+
+      <ngx-post-files [postFiles]="post?.postFiles"  *ngIf="!idFromShared && post?.postFiles?.length > 0"></ngx-post-files>
+    </div>
+
+    <!-- Original post -->
+    <div class="row p-2 mx-2 border mt-4" *ngIf="post?.sharePostId">
+      <nb-card-header>{{ "Original post" | translate }}</nb-card-header>
+      <ngx-view-post [idFromShared]="post?.sharePostId"> </ngx-view-post>
+    </div>
+
+    <!-- post comments -->
+    <ngx-post-comments *ngIf="!idFromShared && post?.numberOfComments>0"> </ngx-post-comments>
+    <div *ngIf="!idFromShared" class="row py-2 mx-2 border border-top">
+      <button
+        class="col-md-2 mr-2"
+        type="button"
+        [routerLink]="['/pages/post/edit/', post?.postId]"
+        status="primary"
+        nbButton
+      >
+        {{ "edit" | translate }}
+      </button>
+
+      <button
+        class="col-md-2 mr-2"
+        type="button"
+        (click)="delete(post?.postId, post?.postText)"
+        status="danger"
+        nbButton
+      >
+        {{ "Delete" | translate }}
+      </button>
+    </div>
+  </nb-card-body>
+</nb-card>

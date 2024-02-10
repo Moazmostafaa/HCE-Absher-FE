@@ -1,0 +1,294 @@
+<nb-card>
+    <nb-card-header>
+        <h2>{{event.eventName}}</h2>
+    </nb-card-header>
+    <nb-card-body>
+        <div class="row">
+            <div class="col-sm-3">
+                <!--Start date -->
+                <div class="form-group">
+                    <label for="eventName" class="label">{{'Start date' |translate}}</label>
+                    <input readonly nbInput shape="round" fullWidth id="eventName"
+                        [ngModel]='event.startDate |date: "dd/MM/yyyy"'>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <!--End date -->
+                <div class="form-group">
+                    <label for="eventName" class="label">{{'End date' |translate}}</label>
+                    <input readonly nbInput shape="round" [ngModel]='event.endDate |date: "dd/MM/yyyy"' fullWidth
+                        id="eventName">
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <!--Registration start date  -->
+                <div class="form-group">
+                    <label for="eventName" class="label">{{'Registration start date' |translate}}</label>
+                    <input readonly nbInput shape="round" [ngModel]='event.regStartDate |date: "dd/MM/yyyy"' fullWidth
+                        id="eventName">
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <!--Registration end date  -->
+                <div class="form-group">
+                    <label for="eventName" class="label">{{'Registration end date' |translate}}</label>
+                    <input readonly nbInput shape="round" [ngModel]='event.regEndDate |date: "dd/MM/yyyy"' fullWidth
+                        id="eventName">
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <!--Event location -->
+                <div class="form-group">
+                    <label for="eventName" class="label">{{'Event location' |translate}}</label>
+                    <input readonly nbInput shape="round" fullWidth id="eventName" [(ngModel)]="event.eventLocation">
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <!--Event category -->
+                <div class="form-group">
+                    <label for="eventName" class="label">{{'Event category' |translate}}</label>
+                    <input readonly nbInput shape="round" [(ngModel)]="categoryName" fullWidth id="eventDuration">
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <!--Has limited seats-->
+                <div class="form-group">
+                    <label for="eventName" class="label">{{'Has limited seats' |translate}}</label>
+                    <br />
+                    <nb-icon icon="checkmark-outline" *ngIf="event.hasLimtedSeats" status="primary"></nb-icon>
+                    <nb-icon icon="close-outline" *ngIf="!event.hasLimtedSeats" status="danger"></nb-icon>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <!--Number of seats-->
+                <div class="form-group">
+                    <label for="eventName" class="label">{{'Number of seats' |translate}}</label>
+                    <input readonly nbInput shape="round" [(ngModel)]="event.numberOfSeats" fullWidth
+                        id="eventDuration">
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <!--Event type -->
+                <div class="form-group">
+                    <label for="eventName" class="label">{{'Event type' |translate}}</label>
+                    <input readonly nbInput shape="round" [ngModel]="getEventType(event.eventType) | translate"
+                        fullWidth id="eventDuration">
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <!--Event privacy -->
+                <div class="form-group">
+                    <label for="eventName" class="label">{{'Event privacy' |translate}}</label>
+                    <input readonly nbInput shape="round" [ngModel]="getEventPrivacy(event.privacyType) | translate"
+                        fullWidth id="eventDuration">
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <!--Event status -->
+                <div class="form-group">
+                    <label for="eventName" class="label">{{'Event status' |translate}}</label>
+                    <input readonly nbInput shape="round" [ngModel]="getEventStatus(event.status) | translate" fullWidth
+                        id="eventDuration">
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <!--Event duration  -->
+                <div class="form-group">
+                    <label for="eventName" class="label">{{'Event duration in days' |translate}}</label>
+                    <input readonly nbInput shape="round" [(ngModel)]="event.eventDuration" fullWidth
+                        id="eventDuration">
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <!--Number of registered users-->
+                <div class="form-group">
+                    <label for="eventName" class="label">{{'Number of registered users' |translate}}</label>
+                    <input readonly nbInput shape="round" [(ngModel)]="event.numberOfRegisteredUsers" fullWidth
+                        id="eventDuration">
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <!--Number of invited users-->
+                <div class="form-group">
+                    <label for="eventName" class="label">{{'Number of invited users' |translate}}</label>
+                    <input readonly nbInput shape="round" [(ngModel)]="event.numberOfInvitedUsers" fullWidth
+                        id="eventDuration">
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <!--Remaining days for registeration-->
+                <div class="form-group">
+                    <label for="eventName" class="label">{{'Remaining days for registeration' |translate}}</label>
+                    <input readonly nbInput shape="round" [(ngModel)]="event.remainingDaysForRegistration" fullWidth
+                        id="eventDuration">
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <!--Description -->
+                <div class="form-group">
+                    <label for="eventName" class="label">{{'Event description' |translate}}</label>
+                    <textarea readonly nbInput shape="round" fullWidth id="eventName"
+                        [(ngModel)]="event.desc"></textarea>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <!--Event agenda -->
+                <div class="form-group">
+                    <label for="eventName" class="label">{{'Event agenda' |translate}}</label>
+                    <textarea readonly nbInput shape="round" fullWidth id="eventName"
+                        [(ngModel)]="event.eventAgenda"></textarea>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <label for="postPhoto" class="label">{{'Event files' |translate}}</label>
+                <div class="d-flex">
+                    <div *ngFor="let file of files;let i=index" class="uploadImg m-2">
+                        <img src="{{file.fileData | base64Image: file.extension}}"
+                            onerror="this.onerror=null;this.src='assets/images/placeholder.png';" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row m-1">
+            <button class="col-md-1 mr-2" type="button" (click)="postpone(dialog)" status="primary" nbButton>{{'Postpone'
+                |translate}}</button>
+
+            <button class="col-md-1 mr-2" type="button" (click)="cancel()" status="danger" nbButton>{{'Cancel'
+                |translate}}</button>
+        </div>
+    </nb-card-body>
+</nb-card>
+
+<div class="row">
+    <div class="col-12">
+        <nb-card>
+            <nb-tabset fullWidth>
+                <nb-tab tabTitle="{{'Accepted requests' |translate}}">
+                    <ngx-accepted-requests></ngx-accepted-requests>
+                </nb-tab>
+                <nb-tab tabTitle="{{'Rejected requests' |translate}}">
+                    <ngx-rejected-requests></ngx-rejected-requests>
+                </nb-tab>
+                <nb-tab *ngIf="event.privacyType == 1" tabTitle="{{'Pending requests to attend' |translate}}">
+                    <attendance-pending-requests [event]="event"></attendance-pending-requests>
+                </nb-tab>
+                <nb-tab *ngIf="event.privacyType == 2" tabTitle="{{'Pending sent invitation' |translate}}">
+                    <ngx-attendance-sent-request [event]="event"></ngx-attendance-sent-request>
+                </nb-tab>
+                <nb-tab tabTitle="{{'Attendees' |translate}}">
+                    <ngx-attendance-list></ngx-attendance-list>
+                </nb-tab>
+            </nb-tabset>
+        </nb-card>
+    </div>
+</div>
+
+
+<ng-template #dialog let-data let-ref="dialogRef">
+    <nb-card>
+        <nb-card-header>{{'Postpone' |translate}}</nb-card-header>
+        <nb-card-body>
+            <div class="assignForm">
+                <div>
+                    <form [formGroup]="eventForm">
+                        <div class="col-sm-12"> <!--Start date -->
+                            <div class="form-group">
+                                <label for="startDate" class="label">{{'Start date' |translate}}</label>
+                                <input [nbDatepicker]="start" [status]="fc.startDate.touched && (fc.startDate.errors || eventForm.hasError('startDateLessThanEndDate'))? 'danger': 'basic'" type="text"
+                                    formControlName="startDate" nbInput shape="round" fullWidth id="startDate"
+                                    placeholder="Ex: 03/05/2022">
+                                <nb-datepicker #start></nb-datepicker>
+                                <mat-error
+                                    *ngIf="fc.startDate.touched && fc.startDate.hasError('minlength') && !fc.startDate.hasError('required')">
+                                    {{'min length 3 Letters' | translate}}
+                                </mat-error>
+                                <mat-error *ngIf="fc.startDate.touched && fc.startDate.hasError('required')">
+        
+                                    {{'Start Date is Required' | translate}}
+                                </mat-error>
+                                <mat-error *ngIf="fc.startDate.touched && fc.startDate.hasError('lessThanToday')">
+        
+                                    {{'Date must be greater than or equal today' | translate}}
+                                </mat-error>
+                                <mat-error *ngIf="eventForm.hasError('startDateLessThanEndDate')">
+        
+                                    {{'start date must be less than or equal to end date' | translate}}
+                                </mat-error>
+        
+                            </div>
+                        </div>
+
+                        <div class="col-sm-12"> <!--End date -->
+                            <div class="form-group">
+                                <label for="endDate" class="label">{{'End date' |translate}}</label>
+                                <input [nbDatepicker]="End" [status]="fc.endDate.touched && fc.endDate.errors? 'danger': 'basic'" type="text"
+                                    formControlName="endDate" nbInput shape="round" fullWidth id="endDate"
+                                    placeholder="Ex: 13/11/2022">
+                                    <nb-datepicker #End></nb-datepicker>
+                                <mat-error
+                                    *ngIf="fc.endDate.touched && fc.endDate.hasError('minlength') && !fc.endDate.hasError('required')">
+                                    {{'min length 3 Letters' | translate}}
+                                </mat-error>
+                                <mat-error *ngIf="fc.endDate.touched && fc.endDate.hasError('required')">
+                                    {{'End Date is Required' | translate}}
+                                </mat-error>
+                                <mat-error *ngIf="fc.endDate.touched && fc.endDate.hasError('lessThanToday')">
+        
+                                  {{'Date must be greater than or equal today' | translate}}
+                              </mat-error>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-12"> <!--Registration start date -->
+                            <div class="form-group">
+                                <label for="regStartDate" class="label">{{'Registration start date' |translate}}</label>
+                                <input [nbDatepicker]="regStartDate" [status]="fc.regStartDate.touched && (fc.regStartDate.errors || eventForm.hasError('regStartDateLessThanStartDate'))? 'danger': 'basic'" type="text"
+                                    formControlName="regStartDate" nbInput shape="round" fullWidth id="regStartDate"
+                                    placeholder="Ex: 03/05/2022">
+                                <nb-datepicker #regStartDate></nb-datepicker>
+                                <mat-error *ngIf="fc.regStartDate.touched && fc.regStartDate.hasError('lessThanToday')">
+        
+                                  {{'Date must be greater than or equal today' | translate}}
+                              </mat-error>
+        
+                              <mat-error *ngIf="eventForm.hasError('regStartDateLessThanRegEndDate')">
+                                {{'Regestration start date must be less than or equal to regestration end date' | translate}}
+                            </mat-error>
+        
+                              <mat-error *ngIf="eventForm.hasError('regStartDateLessThanStartDate')">
+                                {{'Regestration start date must be less than or equal to event start date' | translate}}
+                            </mat-error>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-12"> <!--Registration end date -->
+                            <div class="form-group">
+                                <label for="regEndDate" class="label">{{'Registration end date' |translate}}</label>
+                                <input [nbDatepicker]="regEndDate" [status]="fc.regEndDate.touched && fc.regEndDate.errors? 'danger': 'basic'" type="text"
+                                    formControlName="regEndDate" nbInput shape="round" fullWidth id="regEndDate"
+                                    placeholder="Ex: 13/11/2022">
+                                    <nb-datepicker #regEndDate></nb-datepicker>
+                                    <mat-error *ngIf="fc.regEndDate.touched && (fc.regEndDate.hasError('lessThanToday') || eventForm.hasError('regEndDateLessThanEndDate'))">
+        
+                                      {{'Date must be greater than or equal today' | translate}}
+                                  </mat-error>
+        
+                                  <mat-error *ngIf="eventForm.hasError('regEndDateLessThanEndDate')">
+                                    {{'Regestration end date must be less than or equal to event end date' | translate}}
+                                </mat-error>
+                            </div>
+                        </div>
+                    </form>
+
+                </div>
+
+            </div>
+
+        </nb-card-body>
+        <nb-card-footer>
+            <button class="submitBtn mr-2" nbButton type="button" (click)="submitPostpone(ref); ref.close()"
+                status="primary" nbButton>{{'Postpone' |translate}}</button>
+            <button nbButton id="closePass" (click)="ref.close()">{{'Close' |translate}}</button>
+        </nb-card-footer>
+    </nb-card>
+</ng-template>

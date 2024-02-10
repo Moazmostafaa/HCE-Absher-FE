@@ -1,0 +1,40 @@
+<div class="singlePage">
+    <div class="headerWithControls d-flex">
+        <h3>{{'Notifications' |translate}}</h3>
+        <button nbButton status='success' [routerLink]="['/pages/notification/send']" class="col align-self-end">
+            {{'Send to all users' |translate}}
+        </button>
+    </div>
+    <table mat-table [dataSource]="notifications" class="mat-elevation-z8">
+        <!--- Note that these columns can be defined in any order.
+        The actual rendered columns are set as a property on the row definition" -->
+        <!-- owner Column -->
+        <ng-container matColumnDef="title">
+            <th mat-header-cell *matHeaderCellDef> {{'Title' |translate}} </th>
+            <td mat-cell *matCellDef="let element"> {{element.title}} </td>
+        </ng-container>
+        <ng-container matColumnDef="message">
+            <th mat-header-cell *matHeaderCellDef> {{'Message' |translate}} </th>
+            <td mat-cell *matCellDef="let element"> {{element.message}} </td>
+        </ng-container>
+
+        <!-- title Column -->
+        <ng-container matColumnDef="creationDate">
+            <th mat-header-cell *matHeaderCellDef> {{'Creation date' |translate}} </th>
+            <td mat-cell *matCellDef="let element"> {{element.creationDate | date: "dd/MM/yyyy"}} </td>
+        </ng-container>
+        <ng-container matColumnDef="isBulk">
+            <th mat-header-cell *matHeaderCellDef> {{'Is bulk' |translate}} </th>
+            <td mat-cell *matCellDef="let element">
+                <nb-icon *ngIf="element.isBulk" status="primary" icon="checkmark-outline"></nb-icon>
+                <nb-icon *ngIf="!element.isBulk" status="danger" icon="close-outline"></nb-icon>
+            </td>
+
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+    <mat-paginator [dir]='dir' [length]="totalRecords" [pageIndex]="searchModel.PageNumber-1"
+        [pageSize]="searchModel.PageSize" [pageSizeOptions]="pageSizeOptions" (page)="search($event)"
+        showFirstLastButtons></mat-paginator>
+</div>

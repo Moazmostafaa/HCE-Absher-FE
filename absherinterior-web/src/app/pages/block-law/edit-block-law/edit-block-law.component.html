@@ -1,0 +1,54 @@
+<nb-card>
+    <nb-card-header>{{'Edit' |translate}} {{'block law' |translate}}</nb-card-header>
+    <nb-card-body>
+        <form [formGroup]="lawForm" (ngSubmit)="onSubmit()">
+            <div class="row">
+                <div class="col-sm-6">
+                    <!--Law number -->
+                    <div class="form-group">
+                        <label for="lawNumber" class="label">{{'Law number' |translate}}</label>
+                        <input [status]="fc.lawNumber.touched && fc.lawNumber.errors? 'danger': 'basic'" type="text"
+                            formControlName="lawNumber" nbInput shape="round" fullWidth id="lawNumber">
+                        <mat-error *ngIf="fc.lawNumber.touched && fc.lawNumber.hasError('required')">
+                            {{'Law number is required' | translate}}
+                        </mat-error>
+                        <div *ngIf="fc.lawNumber.touched && fc.lawNumber.errors?.noWhiteSpace">{{'White and empty spaces are not allowed' | translate}}</div>
+
+                    </div>
+                </div>
+
+                <div class="col-sm-6">
+                    <!--Message arabic -->
+                    <div class="form-group">
+                        <label for="messageAr" class="label">{{'Law message in arabic' |translate}}</label>
+                        <input [status]="fc.messageAr.touched && fc.messageAr.errors? 'danger': 'basic'" type="text"
+                            formControlName="messageAr" nbInput shape="round" fullWidth id="messageAr">
+                        <mat-error *ngIf="fc.messageAr.touched && fc.messageAr.errors">
+                            {{'Law message in arabic is required' | translate}}
+                        </mat-error>
+                        <div *ngIf="fc.messageAr.touched && fc.messageAr.errors?.noWhiteSpace">{{'White and empty spaces are not allowed' | translate}}</div>
+
+                    </div>
+                </div>
+
+                <div class="col-sm-6">
+                    <!--Message english -->
+                    <div class="form-group">
+                        <label for="messageEng" class="label">{{'Law message in english' |translate}}</label>
+                        <input [status]="fc.messageEng.touched && fc.messageEng.errors? 'danger': 'basic'" type="text"
+                            formControlName="messageEng" nbInput shape="round" fullWidth id="messageEng">
+                        <mat-error *ngIf="fc.messageEng.touched && fc.messageEng.hasError('required')">
+                            {{'Law message in english is required' | translate}}
+                        </mat-error>
+                        <div *ngIf="fc.messageEng.touched && fc.messageEng.errors?.noWhiteSpace">{{'White and empty spaces are not allowed' | translate}}</div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-2">
+                <button class="floatingBtn m-2" [disabled]="lawForm.invalid || isSubmitted" type="submit" status="primary"
+                    nbButton>{{'Save' |translate}}</button>
+            </div>
+        </form>
+    </nb-card-body>
+</nb-card>

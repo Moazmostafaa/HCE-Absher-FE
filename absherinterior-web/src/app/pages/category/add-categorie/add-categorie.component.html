@@ -1,0 +1,87 @@
+<nb-card>
+    <nb-card-header>{{'Add category' |translate}}</nb-card-header>
+    <nb-card-body>
+        <form  [formGroup]="categoryForm" (ngSubmit)="onSubmit()">
+            <div class="row">
+                <div class="col-sm-6"> <!--categoryName -->
+                    <div class="form-group">
+                        <label for="categoryName" class="label">{{'Category name' |translate}}</label>
+                        <input [status]="fc.categoryName.touched && fc.categoryName.errors? 'danger': 'basic'" type="text"
+                            formControlName="categoryName" nbInput shape="round" fullWidth id="categoryName">
+                        <mat-error
+                            *ngIf="fc.categoryName.touched && fc.categoryName.hasError('minlength') && !fc.categoryName.hasError('required')">
+                            {{'min length 3 Letters' | translate}}
+                        </mat-error>
+                        <mat-error *ngIf="fc.categoryName.touched && fc.categoryName.hasError('required')">
+                        {{'Category name is required' | translate}}
+                        </mat-error>
+                        <div *ngIf="fc.categoryName.touched && fc.categoryName.errors?.noWhiteSpace">{{'White and empty spaces are not allowed' | translate}}</div>
+                    </div>
+                </div>
+                <div class="col-sm-6"> <!--Parent Category -->
+                    <div class="form-group">
+                        <label for="parentCategoryId" class="label">{{'Parent category' |translate}}</label>
+                        <nb-select [status]="fc.parentCategoryId.errors? 'danger': 'basic'" 
+                            formControlName="parentCategoryId" id="parentCategoryId" shape="round" fullWidth>
+                            <nb-option value="">{{'No data selected' |translate}}</nb-option>
+                            <nb-option *ngFor="let category of categories" [value]="category.categoryId">
+                                {{category.name}}</nb-option>
+                        </nb-select>
+                    </div>
+                </div>
+                <div class="col-sm-6"> <!--Category Type -->
+                    <div class="form-group">
+                        <label for="categoryType" class="label">{{'Category type' |translate}}</label>
+                        <nb-select [status]="fc.categoryType.errors? 'danger': 'basic'" 
+                            formControlName="categoryType" id="categoryType" shape="round" fullWidth>
+                            <nb-option *ngFor="let type of Types;let i=index" [value]='i+1'>
+                                {{type |translate}}</nb-option>
+                            <mat-error *ngIf="submitted && fc.categoryType.hasError('required')">
+                                {{'This Field is is Required' | translate}}
+                            </mat-error>
+                        </nb-select>
+
+                    </div>
+                </div>
+                <div class="col-sm-6"> <!--description -->
+                    <div class="form-group">
+                        <label for="description" class="label">{{'Category description' |translate}}</label>
+                        <textarea [status]="fc.description.touched && fc.description.errors? 'danger': 'basic'" type="text"
+                            formControlName="description" nbInput shape="round" fullWidth id="description"></textarea>
+                        <mat-error
+                            *ngIf="fc.description.touched && fc.description.hasError('minlength') && !fc.description.hasError('required')">
+                            {{'min length 3 Letters' | translate}}
+                        </mat-error>
+                        <mat-error *ngIf="fc.description.touched && fc.description.hasError('required')">
+                            {{'Category description is Required' | translate}}
+                        </mat-error>
+                        <div *ngIf="fc.description.touched && fc.description.errors?.noWhiteSpace">{{'White and empty spaces are not allowed' | translate}}</div>
+
+                    </div>
+                </div>   
+                <!--Event Image -->
+                <div class="col-sm-6">
+                    <label for="profileImage" class="label">{{'Category photo' |translate}}</label>
+                    <div class="uploadImg" (click)="upload.click()">
+                        <img src="{{categoryImageAttachment | base64Image: categoryImageExtension}}"
+                            onerror="this.onerror=null;this.src='./assets/images/placeholder.png';" alt="">
+                        <i class="fas fa-camera"></i>
+                        <input nbInput accept="image/*" type="file" #upload (change)="onSelectImage($event)" />
+                    </div>
+                    <p *ngIf="fc.categoryPhoto.touched && fc.categoryPhoto.errors" class="text-danger">Please select a
+                        valid
+                        image</p>
+                </div>
+            </div>
+            <div class="row mt-2">
+                <button class="offset-md-11" [disabled]="categoryForm.invalid ||isSubmitted"   type="submit"  status="primary"
+                    nbButton>{{'Save' |translate}}</button>
+            </div>
+
+        </form>
+    </nb-card-body>
+</nb-card>
+
+
+
+

@@ -1,0 +1,64 @@
+nb-icon {
+    font-size: 2rem;
+  }
+  nb-tabset {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  :host ::ng-deep ngx-tab1, :host ::ng-deep ngx-tab2 {
+    display: block;
+    padding: 1rem 2rem;
+  }
+  table {
+    width: 100%;
+  }
+  nb-card {
+    width: 100%;
+  }
+  
+  .headerWithControls{
+    justify-content: space-between;
+    button{
+      max-width: fit-content;
+      position: relative;
+      top: -11px;
+    }
+  }
+  .uploadImg{
+    width: fit-content;
+    position: relative;
+    cursor: pointer;
+    input{
+        display: none;
+    }
+    img{
+        width: 100px;
+        border-radius: 25px;
+        cursor: pointer;
+        border: 1px solid #ececec;
+    }
+    i{
+        position: absolute;
+        z-index: 9;
+        // box-shadow: 0px 18px 30px rgb(5 8 40 / 6%);
+        background-color: white;
+        width: 40px;
+        height: 40px;
+        font-size: 19px;
+        text-align: center;
+        padding-top: 8px;
+        border-radius: 50%;
+        color: gray;
+        border: 1px solid whitesmoke;
+        left: 0;
+        bottom: -12px;
+    }
+    &:hover{
+        img{
+            transform: scale(1.01,1.01);
+            transition: .3s ease-in-out;
+        }
+    }
+}

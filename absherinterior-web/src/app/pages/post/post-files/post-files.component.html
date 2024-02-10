@@ -1,0 +1,65 @@
+<nb-card class="my-3">
+  <nb-card-header class="mb-3">
+    <h6>
+      {{ "Post files" | translate }}
+    </h6>
+  </nb-card-header>
+  <nb-card-body>
+    <div class="row flex-wrap post-files">
+      <div class="col-md-3" *ngFor="let file of files">
+        <!-- images handling -->
+        <div class="img-wrapper position-relative" *ngIf="file.fileType == 1">
+          <div
+            class="img-buttons w-100 h-100 d-flex position-absolute align-items-center justify-content-center"
+          >
+            <a
+              href="{{ file.fileLink }}"
+              target="_blank"
+              download="{{ file.fileName }}"
+              rel="noopener noreferrer"
+              class="text-white py-2 d-flex px-3 mx-2 border border-white rounded"
+              ><mat-icon>download</mat-icon></a
+            >
+            <button
+              (click)="openImageInWindow(file.fileName, file.fileLink)"
+              type="button"
+              class="btn shadow-one text-white py-2 d-flex px-3 mx-2 border border-white rounded"
+            >
+              <mat-icon>visibility</mat-icon>
+            </button>
+          </div>
+          <img
+            src="{{ file.fileLink }}"
+            class="d-block border border-2 w-100"
+          />
+        </div>
+        <!-- files  -->
+          <a
+          *ngIf="file.fileType == 4"
+            [href]="file.fileLink | byPassSecurity: 'url'"
+            target="_blank"
+            download="{{ file.fileName }}"
+            rel="noopener noreferrer"
+            class="file-wrapper py-2 d-flex px-3 mx-2 text-dark border d-flex flex-column align-items-center justify-content-center rounded"
+            >
+            <mat-icon class="file-icon">file_present</mat-icon>
+            <div class="d-flex align-items-center p-2 border border-2 m-2">
+              <mat-icon>file_download</mat-icon>
+              {{ file.fileName }}
+            </div>
+          </a>
+        <!-- videos handling -->
+
+        <video *ngIf="file.fileType == 2" controls>
+          <source src="{{ file.fileLink }}" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+      </div>
+    </div>
+  </nb-card-body>
+</nb-card>
+
+<!-- image in window template -->
+<ng-template #contentTemplate let-data>
+  <img src="{{ data.src }}" class="window-img" alt="{{ data.title }}" />
+</ng-template>

@@ -1,0 +1,34 @@
+  stages:
+    - build
+
+  dev_build:
+    stage: build
+    only:
+      - development
+    artifacts:
+      paths:
+        - $CI_PROJECT_DIR/dist
+    script:
+      - npm i
+      - ng build --c=ai-dev
+      - Remove-Item "C:\Domains\aidev.smartwaveeg.com\wwwroot\*" -Exclude web.config -Recurse
+      - $distPath = Join-Path -Path (Get-Location).Path -ChildPath "dist\*"
+      - Copy-Item -Path $distPath -Destination "C:\Domains\aidev.smartwaveeg.com\wwwroot" -Recurse
+    environment:
+        name: development
+      
+  testing_build:
+    stage: build
+    only:
+      -  testing
+    artifacts:
+      paths:
+        - $CI_PROJECT_DIR/dist
+    script:
+        - npm i
+        - ng build --c=ai-test
+        - Remove-Item "C:\Domains\aitest.smartwaveeg.com\wwwroot\*" -Exclude web.config -Recurse
+        - $distPath = Join-Path -Path (Get-Location).Path -ChildPath "dist\*"
+        - Copy-Item -Path $distPath -Destination "C:\Domains\aitest.smartwaveeg.com\wwwroot" -Recurse
+    environment:
+        name: testing

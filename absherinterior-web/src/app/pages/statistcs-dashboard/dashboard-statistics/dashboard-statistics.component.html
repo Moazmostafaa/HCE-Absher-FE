@@ -1,0 +1,114 @@
+<nb-card>
+    <div class="dashboardPage">
+        <div class="row">
+            <div class="datePiker">
+                <mat-form-field appearance="fill">
+                    <mat-label>{{'From' |translate}}</mat-label>
+                    <input matInput [matDatepicker]="from" [(ngModel)]="FromDate">
+                    <mat-datepicker-toggle matSuffix [for]="from"></mat-datepicker-toggle>
+                    <mat-datepicker #from [(ngModel)]="FromDate" ngDefaultControl></mat-datepicker>
+                </mat-form-field>
+            </div>
+            <div class="datePiker">
+                <mat-form-field appearance="fill">
+                    <mat-label>{{'To' |translate}}</mat-label>
+                    <input matInput [matDatepicker]="to" [(ngModel)]="ToDate">
+                    <mat-datepicker-toggle matSuffix [for]="to"></mat-datepicker-toggle>
+                    <mat-datepicker #to [(ngModel)]="ToDate" ngDefaultControl></mat-datepicker>
+                </mat-form-field>
+            </div>
+        </div>
+        <div class="totalStatistcs">
+            <div class="row">
+                <div class="col-md-3 col-sm-12">
+                    <ngx-card-stat [icon]="'fa fa-users'" [text]="'Total number of users' |translate" [from]="FromDate"
+                        [to]="ToDate" [statsEnum]="totalUsers"></ngx-card-stat>
+                </div>
+                <div class="col-md-3 col-sm-12">
+                    <ngx-card-stat [icon]="'fa fa-users'" [text]="'Total number of active users' |translate"
+                        [from]="FromDate" [to]="ToDate" [statsEnum]="totalActiveUsers"></ngx-card-stat>
+                </div>
+                <div class="col-md-3 col-sm-12">
+                    <ngx-card-stat [icon]="'fa fa-users'" [text]="'Total number of inactive users' |translate"
+                        [from]="FromDate" [to]="ToDate" [statsEnum]="totalInactiveUsers"></ngx-card-stat>
+                </div>
+                <div class="col-md-3 col-sm-12">
+                    <ngx-card-stat [icon]="'fa fa-file'" [text]="'Total number of posts' |translate" [from]="FromDate"
+                        [to]="ToDate" [statsEnum]="totalPosts"></ngx-card-stat>
+                </div>
+                <div class="col-md-3 col-sm-12">
+                    <ngx-card-stat [icon]="'fa fa-comments'" [text]="'Total number of chat conversations' |translate"
+                        [from]="FromDate" [to]="ToDate" [statsEnum]="totalChats"></ngx-card-stat>
+                </div>
+                <div class="col-md-3 col-sm-12">
+                    <ngx-card-stat [icon]="'fa fa-calendar'" [text]="'Total number of events' |translate"
+                        [from]="FromDate" [to]="ToDate" [statsEnum]="totalEvents"></ngx-card-stat>
+                </div>
+                <div class="col-md-3 col-sm-12">
+                    <ngx-card-stat [icon]="'fa fa-folder-open'"
+                        [text]="'Total number of knowledge center documents' |translate" [from]="FromDate" [to]="ToDate"
+                        [statsEnum]="totalKnowledgeCenterDocuments"></ngx-card-stat>
+                </div>
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 col-sm-12">
+                <nb-card>
+                    <nb-card-header>{{'Top post owners' |translate}}</nb-card-header>
+                    <nb-card-body>
+                        <pie-stat [statsEnum]="postOwners" [from]="FromDate" [to]="ToDate" [text]="'Users' |translate"></pie-stat>
+                    </nb-card-body>
+                  </nb-card>
+            </div>
+            <div class="col-md-12 col-sm-12">
+                <nb-card>
+                    <nb-card-header>{{'Top 10 liked posts' |translate}}</nb-card-header>
+                    <nb-card-body>
+                        <pie-stat [statsEnum]="likedPosts" [from]="FromDate" [to]="ToDate"></pie-stat>
+                    </nb-card-body>
+                  </nb-card>
+            </div>
+            <div class="col-md-12 col-sm-12">
+                <nb-card>
+                    <nb-card-header>{{'Top 10 commented posts' |translate}}</nb-card-header>
+                    <nb-card-body>
+                        <pie-stat [statsEnum]="commentedPosts" [from]="FromDate" [to]="ToDate"></pie-stat>
+                    </nb-card-body>
+                  </nb-card>
+            </div>
+            <div class="col-md-12 col-sm-12">
+                <nb-card>
+                    <nb-card-header>{{'Top 10 shared posts' |translate}}</nb-card-header>
+                    <nb-card-body>
+                        <pie-stat [statsEnum]="sharedPosts" [from]="FromDate" [to]="ToDate"></pie-stat>
+                    </nb-card-body>
+                  </nb-card>
+            </div>
+            <div class="col-md-12 col-sm-12">
+                <nb-card>
+                    <nb-card-header>{{'Top 10 attended events' |translate}}</nb-card-header>
+                    <nb-card-body>
+                        <pie-stat [statsEnum]="attendedEvents" [from]="FromDate" [to]="ToDate"></pie-stat>
+                    </nb-card-body>
+                  </nb-card>
+            </div>
+            <div class="col-md-12 col-sm-12">
+                <nb-card>
+                    <nb-card-header>{{'Top 10 liked knowledge center documents' |translate}}</nb-card-header>
+                    <nb-card-body>
+                        <pie-stat [statsEnum]="likedKnowledgeCenterDocuments" [from]="FromDate" [to]="ToDate"></pie-stat>
+                    </nb-card-body>
+                  </nb-card>
+            </div>
+            <div class="col-md-12 col-sm-12">
+                <nb-card>
+                    <nb-card-header>{{'Top 10 shared knowledge center documents' |translate}}</nb-card-header>
+                    <nb-card-body>
+                        <pie-stat [statsEnum]="sharedKnowledgeCenterDocuments" [from]="FromDate" [to]="ToDate"></pie-stat>
+                    </nb-card-body>
+                  </nb-card>
+            </div>
+        </div>
+    </div>
+</nb-card>
