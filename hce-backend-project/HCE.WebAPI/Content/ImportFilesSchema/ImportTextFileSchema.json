@@ -1,0 +1,70 @@
+[
+  {
+    "Code": "TT",
+    "FileName": "TT File",
+    "Records": [
+      {
+        "RecordName": "mSOriginating",
+        "RecordClassName": "MSOriginating",
+        "RecordColumns": [
+          {
+            "ColumnName": "dateForStartOfCharge",
+            "ColumnName2": "",
+            "PropertyName": "DateForStartOfCharge",
+            "DataType": "string",
+            "IsRequired": "true"
+          },
+          {
+            "ColumnName": "timeForStartOfCharge",
+            "ColumnName2": "",
+            "PropertyName": "TimeForStartOfCharge",
+            "DataType": "string",
+            "IsRequired": "true"
+          },
+          {
+            "ColumnName": "timeForStopOfCharge",
+            "ColumnName2": "",
+            "PropertyName": "TimeForStopOfCharge",
+            "DataType": "string",
+            "IsRequired": "true"
+          },
+          {
+            "ColumnName": "firstCallingLocationInformation",
+            "ColumnName2": "",
+            "PropertyName": "FirstCallingLocationInformation",
+            "DataType": "string",
+            "IsRequired": "true"
+          },
+          {
+            "ColumnName": "callingPartyNumber",
+            "ColumnName2": "",
+            "PropertyName": "CallingPartyNumber",
+            "DataType": "string",
+            "IsRequired": "true"
+          },
+          {
+            "ColumnName": "eosInfo",
+            "ColumnName2": "",
+            "PropertyName": "EosInfo",
+            "DataType": "string",
+            "IsRequired": "true"
+          },
+          {
+            "ColumnName": "iuCodec",
+            "ColumnName2": "firstAssignedSpeechCoderVersion",
+            "PropertyName": "FirstAssignedSpeechCoderVersion",
+            "DataType": "string",
+            "IsRequired": "true"
+          },
+          {
+            "ColumnName": "internalCauseAndLoc",
+            "ColumnName2": "",
+            "PropertyName": "InternalCauseAndLoc",
+            "DataType": "string",
+            "IsRequired": "true"
+          }
+        ]
+      }
+    ]
+  }
+]

@@ -1,0 +1,16 @@
+C:\PartTimeProjects\SmartWave\HCE\HCE\HCE.Resource\bin\Debug\net5.0\HCE.Resource.deps.json
+C:\PartTimeProjects\SmartWave\HCE\HCE\HCE.Resource\bin\Debug\net5.0\HCE.Resource.dll
+C:\PartTimeProjects\SmartWave\HCE\HCE\HCE.Resource\bin\Debug\net5.0\ref\HCE.Resource.dll
+C:\PartTimeProjects\SmartWave\HCE\HCE\HCE.Resource\bin\Debug\net5.0\HCE.Resource.pdb
+C:\PartTimeProjects\SmartWave\HCE\HCE\HCE.Resource\bin\Debug\net5.0\ar-EG\HCE.Resource.resources.dll
+C:\PartTimeProjects\SmartWave\HCE\HCE\HCE.Resource\obj\Debug\net5.0\HCE.Resource.Message_Resource.resources
+C:\PartTimeProjects\SmartWave\HCE\HCE\HCE.Resource\obj\Debug\net5.0\HCE.Resource.Message_Resource.ar-EG.resources
+C:\PartTimeProjects\SmartWave\HCE\HCE\HCE.Resource\obj\Debug\net5.0\HCE.Resource.csproj.GenerateResource.cache
+C:\PartTimeProjects\SmartWave\HCE\HCE\HCE.Resource\obj\Debug\net5.0\HCE.Resource.GeneratedMSBuildEditorConfig.editorconfig
+C:\PartTimeProjects\SmartWave\HCE\HCE\HCE.Resource\obj\Debug\net5.0\HCE.Resource.AssemblyInfoInputs.cache
+C:\PartTimeProjects\SmartWave\HCE\HCE\HCE.Resource\obj\Debug\net5.0\HCE.Resource.AssemblyInfo.cs
+C:\PartTimeProjects\SmartWave\HCE\HCE\HCE.Resource\obj\Debug\net5.0\HCE.Resource.csproj.CoreCompileInputs.cache
+C:\PartTimeProjects\SmartWave\HCE\HCE\HCE.Resource\obj\Debug\net5.0\ar-EG\HCE.Resource.resources.dll
+C:\PartTimeProjects\SmartWave\HCE\HCE\HCE.Resource\obj\Debug\net5.0\HCE.Resource.dll
+C:\PartTimeProjects\SmartWave\HCE\HCE\HCE.Resource\obj\Debug\net5.0\ref\HCE.Resource.dll
+C:\PartTimeProjects\SmartWave\HCE\HCE\HCE.Resource\obj\Debug\net5.0\HCE.Resource.pdb

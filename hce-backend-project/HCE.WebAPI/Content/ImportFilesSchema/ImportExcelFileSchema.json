@@ -1,0 +1,128 @@
+[
+    {
+      "Code": "CDBR",
+      "FileName": "Customer database and reports",
+      "Sheets": [
+        {
+          "SheetName": "Raw Data From CRM Complains",
+          "SheetClassName": "RawDataFromCRMComplains",
+          "SheetColumns": [
+            {
+              "ColumnName": "MSISDN",
+              "PropertyName": "MSISDN",
+              "DataType": "string",
+              "IsRequired": "true"
+            },
+            {
+              "ColumnName": "Ticket ID",
+              "PropertyName": "TicketID",
+              "DataType": "string",
+              "IsRequired": "true"
+            },
+            {
+              "ColumnName": "Description",
+              "PropertyName": "Description",
+              "DataType": "string",
+              "IsRequired": "true"
+            },
+            {
+              "ColumnName": "Status",
+              "PropertyName": "Status",
+              "DataType": "string",
+              "IsRequired": "true"
+            },
+            {
+              "ColumnName": "Creation Date",
+              "PropertyName": "CreationDate",
+              "DataType": "string",
+              "IsRequired": "true"
+            },
+            {
+              "ColumnName": "Created By",
+              "PropertyName": "CreatedBy",
+              "DataType": "string",
+              "IsRequired": "true"
+            },
+            {
+              "ColumnName": "Resolution Date",
+              "PropertyName": "ResolutionDate",
+              "DataType": "string",
+              "IsRequired": "true"
+            },
+            {
+              "ColumnName": "Resolved By",
+              "PropertyName": "ResolvedBy",
+              "DataType": "string",
+              "IsRequired": "true"
+            },
+            {
+              "ColumnName": "Type",
+              "PropertyName": "Type",
+              "DataType": "string",
+              "IsRequired": "true"
+            },
+            {
+              "ColumnName": "Category",
+              "PropertyName": "Category",
+              "DataType": "string",
+              "IsRequired": "true"
+            },
+            {
+              "ColumnName": "Sub-category",
+              "PropertyName": "SubCategory",
+              "DataType": "string",
+              "IsRequired": "true"
+            },
+            {
+              "ColumnName": "Assigned Group",
+              "PropertyName": "AssignedGroup",
+              "DataType": "string",
+              "IsRequired": "true"
+            },
+            {
+              "ColumnName": "Customer Price Plan",
+              "PropertyName": "CustomerPricePlan",
+              "DataType": "string",
+              "IsRequired": "true"
+            },
+            {
+              "ColumnName": "Customer Language",
+              "PropertyName": "CustomerLanguage",
+              "DataType": "string",
+              "IsRequired": "true"
+            },
+            {
+              "ColumnName": "Customer Profile",
+              "PropertyName": "CustomerProfile",
+              "DataType": "string",
+              "IsRequired": "true"
+            },
+            {
+              "ColumnName": "Country",
+              "PropertyName": "Country",
+              "DataType": "string",
+              "IsRequired": "true"
+            },
+            {
+              "ColumnName": "Province",
+              "PropertyName": "Province",
+              "DataType": "string",
+              "IsRequired": "true"
+            },
+            {
+              "ColumnName": "City",
+              "PropertyName": "City",
+              "DataType": "string",
+              "IsRequired": "true"
+            },
+            {
+              "ColumnName": "District",
+              "PropertyName": "District",
+              "DataType": "string",
+              "IsRequired": "true"
+            }
+          ]
+        }
+      ]
+    }
+]

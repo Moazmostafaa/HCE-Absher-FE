@@ -1,0 +1,15 @@
+C:\PartTimeProjects\SmartWave\HCE\HCE\HCE.Interfaces\bin\Debug\net5.0\HCE.Interfaces.deps.json
+C:\PartTimeProjects\SmartWave\HCE\HCE\HCE.Interfaces\bin\Debug\net5.0\HCE.Interfaces.dll
+C:\PartTimeProjects\SmartWave\HCE\HCE\HCE.Interfaces\bin\Debug\net5.0\ref\HCE.Interfaces.dll
+C:\PartTimeProjects\SmartWave\HCE\HCE\HCE.Interfaces\bin\Debug\net5.0\HCE.Interfaces.pdb
+C:\PartTimeProjects\SmartWave\HCE\HCE\HCE.Interfaces\bin\Debug\net5.0\HCE.Utility.dll
+C:\PartTimeProjects\SmartWave\HCE\HCE\HCE.Interfaces\bin\Debug\net5.0\HCE.Utility.pdb
+C:\PartTimeProjects\SmartWave\HCE\HCE\HCE.Interfaces\obj\Debug\net5.0\HCE.Interfaces.csproj.AssemblyReference.cache
+C:\PartTimeProjects\SmartWave\HCE\HCE\HCE.Interfaces\obj\Debug\net5.0\HCE.Interfaces.GeneratedMSBuildEditorConfig.editorconfig
+C:\PartTimeProjects\SmartWave\HCE\HCE\HCE.Interfaces\obj\Debug\net5.0\HCE.Interfaces.AssemblyInfoInputs.cache
+C:\PartTimeProjects\SmartWave\HCE\HCE\HCE.Interfaces\obj\Debug\net5.0\HCE.Interfaces.AssemblyInfo.cs
+C:\PartTimeProjects\SmartWave\HCE\HCE\HCE.Interfaces\obj\Debug\net5.0\HCE.Interfaces.csproj.CoreCompileInputs.cache
+C:\PartTimeProjects\SmartWave\HCE\HCE\HCE.Interfaces\obj\Debug\net5.0\HCE.Interfaces.csproj.CopyComplete
+C:\PartTimeProjects\SmartWave\HCE\HCE\HCE.Interfaces\obj\Debug\net5.0\HCE.Interfaces.dll
+C:\PartTimeProjects\SmartWave\HCE\HCE\HCE.Interfaces\obj\Debug\net5.0\ref\HCE.Interfaces.dll
+C:\PartTimeProjects\SmartWave\HCE\HCE\HCE.Interfaces\obj\Debug\net5.0\HCE.Interfaces.pdb

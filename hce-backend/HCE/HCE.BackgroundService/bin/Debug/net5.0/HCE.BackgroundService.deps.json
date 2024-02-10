@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v5.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v5.0": {
+      "HCE.BackgroundService/1.0.0": {
+        "runtime": {
+          "HCE.BackgroundService.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "HCE.BackgroundService/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

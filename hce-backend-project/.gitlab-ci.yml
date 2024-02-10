@@ -1,0 +1,27 @@
+  stages:
+    - build
+    - release
+  dev_build:
+    stage: build
+    script:
+     - dotnet clean
+     - dotnet restore
+     - dotnet build
+    only:
+      -  Dev
+    environment:
+        name: development
+ 
+  dev_release:
+    stage: release
+    only:
+      - Dev
+    artifacts:
+      paths:
+        - publish/
+    script:
+      - Stop-WebAppPool -Name hceapi.smartwaveeg.com
+      - dotnet publish -c Release -o C:\Domains\hceapi.smartwaveeg.com /p:PublishProfile=Development
+      - Start-WebAppPool -Name hceapi.smartwaveeg.com
+    environment:
+        name: development

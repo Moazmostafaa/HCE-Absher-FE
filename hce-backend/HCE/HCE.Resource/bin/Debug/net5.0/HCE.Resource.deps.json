@@ -1,0 +1,28 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v5.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v5.0": {
+      "HCE.Resource/1.0.0": {
+        "runtime": {
+          "HCE.Resource.dll": {}
+        },
+        "resources": {
+          "ar-EG/HCE.Resource.resources.dll": {
+            "locale": "ar-EG"
+          }
+        }
+      }
+    }
+  },
+  "libraries": {
+    "HCE.Resource/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

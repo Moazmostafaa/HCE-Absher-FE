@@ -1,0 +1,11 @@
+C:\PartTimeProjects\SmartWave\HCE\HCE\HCE.Utility\bin\Debug\net5.0\HCE.Utility.deps.json
+C:\PartTimeProjects\SmartWave\HCE\HCE\HCE.Utility\bin\Debug\net5.0\HCE.Utility.dll
+C:\PartTimeProjects\SmartWave\HCE\HCE\HCE.Utility\bin\Debug\net5.0\ref\HCE.Utility.dll
+C:\PartTimeProjects\SmartWave\HCE\HCE\HCE.Utility\bin\Debug\net5.0\HCE.Utility.pdb
+C:\PartTimeProjects\SmartWave\HCE\HCE\HCE.Utility\obj\Debug\net5.0\HCE.Utility.GeneratedMSBuildEditorConfig.editorconfig
+C:\PartTimeProjects\SmartWave\HCE\HCE\HCE.Utility\obj\Debug\net5.0\HCE.Utility.AssemblyInfoInputs.cache
+C:\PartTimeProjects\SmartWave\HCE\HCE\HCE.Utility\obj\Debug\net5.0\HCE.Utility.AssemblyInfo.cs
+C:\PartTimeProjects\SmartWave\HCE\HCE\HCE.Utility\obj\Debug\net5.0\HCE.Utility.csproj.CoreCompileInputs.cache
+C:\PartTimeProjects\SmartWave\HCE\HCE\HCE.Utility\obj\Debug\net5.0\HCE.Utility.dll
+C:\PartTimeProjects\SmartWave\HCE\HCE\HCE.Utility\obj\Debug\net5.0\ref\HCE.Utility.dll
+C:\PartTimeProjects\SmartWave\HCE\HCE\HCE.Utility\obj\Debug\net5.0\HCE.Utility.pdb
